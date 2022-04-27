@@ -1,4 +1,4 @@
-package it.pa.repdgt.shared.enityenum;
+package it.pa.repdgt.shared.entityenum;
 
 import lombok.Getter;
 

@@ -44,7 +44,7 @@ public class UtenteEntity implements Serializable {
 	@ManyToMany(fetch = FetchType.EAGER, targetEntity = RuoloEntity.class)
 	@JoinTable(
 		name = "UTENTE_X_RUOLO", 
-		joinColumns = @JoinColumn(name = "UTENTE_ID", referencedColumnName = "ID"), 
+		joinColumns = @JoinColumn(name = "UTENTE_ID", referencedColumnName = "CODICE_FISCALE"), 
 		inverseJoinColumns = @JoinColumn(name = "RUOLO_ID", referencedColumnName = "ID")
 	)
 	private List<RuoloEntity> ruoli = new ArrayList<>();

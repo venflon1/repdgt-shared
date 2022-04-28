@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,7 +33,7 @@ public class RuoloEntity implements Serializable {
 	@Column(name = "DESCRIZIONE", nullable = false, unique = true)
 	private String descrizione;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 		name = "RUOLO_X_PERMESSO",
 		joinColumns = @JoinColumn(name = "RUOLO_ID",  referencedColumnName = "ID"),

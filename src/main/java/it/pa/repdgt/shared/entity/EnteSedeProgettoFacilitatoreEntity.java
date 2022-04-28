@@ -1,6 +1,5 @@
 package it.pa.repdgt.shared.entity;
 
-import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -8,19 +7,21 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
-import it.pa.repdgt.shared.entity.key.EnteSedeProgettoKey;
+import it.pa.repdgt.shared.entity.key.EnteSedeProgettoFacilitatoreKey;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
+@NoArgsConstructor
 @Getter
 @Setter
-@Table(name = "ENTE_SEDE_PROGETTO")
-public class EnteSedeProgetto {
-
+@Table(name = "ENTE_SEDE_PROGETTO_FACILITATORE")
+public class EnteSedeProgettoFacilitatoreEntity {
+	
 	@EmbeddedId
-	private EnteSedeProgettoKey id;
-
+	private EnteSedeProgettoFacilitatoreKey id;
+	
 	@MapsId(value = "idEnte")
 	@ManyToOne(targetEntity = EnteEntity.class)
 	@JoinColumn(name = "ID_ENTE", referencedColumnName = "ID")
@@ -36,9 +37,8 @@ public class EnteSedeProgetto {
 	@JoinColumn(name = "ID_PROGETTO", referencedColumnName = "ID")
 	private ProgettoEntity progetto;
 	
-	@Column(name = "RUOLO")
-	private String ruolo;
-	
-	@Column(name = "TIPOLOGIA_SERVIZIO")
-	private String tipologiaServizio;
+	@MapsId(value = "idFacilitarore")
+	@ManyToOne(targetEntity = UtenteEntity.class)
+	@JoinColumn(name = "ID_FACILITATORE", referencedColumnName = "CODICE_FISCALE")
+	private UtenteEntity facilitatore;
 }

@@ -21,7 +21,6 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import it.pa.repdgt.shared.entity.ReferentiDelegatiEnteGestoreProgrammaEntity;
 import it.pa.repdgt.shared.entityenum.PolicyEnum;
 import lombok.Data;
 import lombok.NoArgsConstructor;

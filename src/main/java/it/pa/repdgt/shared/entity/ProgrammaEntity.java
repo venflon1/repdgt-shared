@@ -35,7 +35,10 @@ public class ProgrammaEntity implements Serializable {
 
 	@Column(name = "NOME", nullable = false)
 	private String nome;
-
+	
+	@Column(name = "NOME_BREVE", nullable = false)
+	private String nomeBreve;
+	
 //	/**
 //	 * La lista dei Progetti di questo (this) Programma
 //	 * 

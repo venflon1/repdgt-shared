@@ -9,7 +9,6 @@ import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 import it.pa.repdgt.shared.entity.key.ReferentiDelegatiEnteGestoreProgrammaKey;
-import it.pa.repdgt.shared.entity.light.ProgrammaLightEntityId;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

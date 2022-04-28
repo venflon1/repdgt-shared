@@ -6,8 +6,7 @@ import lombok.Getter;
 public enum StatoEnum {
 	 ATTIVO("ATTIVO")
 	,NON_ATTIVO("NON ATTIVO")
-	,BOZZA("BOZZA")
-	,SOSPESO("SOSPESO")
+	,CANCELLABILE("CANCELLABILE")
 	;
 	
 	private String value;

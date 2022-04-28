@@ -9,7 +9,6 @@ import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 import it.pa.repdgt.shared.entity.key.ReferentiDelegatiEnteGestoreProgettoKey;
-import it.pa.repdgt.shared.entity.light.ProgettoLightEntityId;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -31,7 +30,7 @@ public class ReferentiDelegatiEnteGestoreProgettoEntity {
     @ManyToOne
     @MapsId(value = "idProgetto")
     @JoinColumn(name = "ID_PROGETTO", referencedColumnName = "ID")
-    private ProgettoLightEntityId progettoLightEntityId;
+    private ProgettoEntity progetto;
 
     @ManyToOne
     @MapsId(value = "codFiscaleUtente")

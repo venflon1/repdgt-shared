@@ -3,6 +3,9 @@ package it.pa.repdgt.shared.entity;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 import it.pa.repdgt.shared.entity.key.ReferentiDelegatiEntePartnerDiProgettoKey;
@@ -24,16 +27,20 @@ public class ReferentiDelegatiEntePartnerDiProgettoEntity {
 	@EmbeddedId
 	private ReferentiDelegatiEntePartnerDiProgettoKey id;
 
-//    @ManyToOne
-//    @MapsId(value = "idEnte")
-//    @JoinColumn(name = "ID_ENTE", referencedColumnName = "ID")
-//    private Long idEnte;
-//
-//    @JsonIgnore
-//    @ManyToOne
-//    @MapsId(value = "codFiscaleUtente")
-//    @JoinColumn(name = "CF_UTENTE", referencedColumnName = "CODICE_FISCALE_UTENTE")
-//    private UtenteEntity utente;
+	@ManyToOne
+	@MapsId(value = "idProgetto")
+	@JoinColumn(name = "ID_PROGETTO", referencedColumnName = "ID")
+	private ProgettoEntity progetto;
+	
+    @ManyToOne
+    @MapsId(value = "idEnte")
+    @JoinColumn(name = "ID_ENTE", referencedColumnName = "ID")
+    private EnteEntity ente;
+
+    @ManyToOne
+    @MapsId(value = "codFiscaleUtente")
+    @JoinColumn(name = "CF_UTENTE", referencedColumnName = "CODICE_FISCALE")
+    private UtenteEntity utente;
 
     @Column(name = "CODICE_RUOLO")
     private String codiceRuolo;

@@ -2,8 +2,6 @@ package it.pa.repdgt.shared.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -15,7 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -37,19 +34,17 @@ public class ProgrammaEntity implements Serializable {
 	@Column(name = "ID")
 	private Long id;
 
-	@Column(name = "CODICE", nullable = true, unique = true)
-	private String codice = UUID.randomUUID().toString().toUpperCase();
-
 	@Column(name = "NOME", nullable = false)
 	private String nome;
 
-	/**
-	 * La lista dei Progetti di questo (this) Programma
-	 * 
-	 * */
-	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, targetEntity = ProgettoEntity.class, mappedBy = "programma")
-	private List<ProgettoEntity> progetti;
+//	/**
+//	 * La lista dei Progetti di questo (this) Programma
+//	 * 
+//	 * */
+//	@JsonIgnore
+//	@OneToMany(fetch = FetchType.LAZY, targetEntity = ProgettoLightEntityNew.class)
+//	@JoinColumn(name = "ID_PROGRAMMA")
+//	private List<ProgettoLightEntityNew> progetti;
 
 	/**
 	 * L'Ente Gestore di questo (this) Programma
@@ -60,9 +55,9 @@ public class ProgrammaEntity implements Serializable {
 	@JoinColumn(name = "ID_ENTE_GESTORE_PROGRAMMA", referencedColumnName = "ID")
 	private EnteEntity enteGestoreProgramma;
 
-	@JsonIgnore
-	@OneToMany(mappedBy = "programmaLightEntityId", fetch = FetchType.EAGER)
-	private Set<ReferentiDelegatiEnteGestoreProgrammaEntity> referentiDelegatiDellEnteGestoreProgramma;
+//	@JsonIgnore
+//	@OneToMany(mappedBy = "programmaLightEntityId", fetch = FetchType.EAGER)
+//	private Set<ReferentiDelegatiEnteGestoreProgrammaEntity> referentiDelegatiDellEnteGestoreProgramma;
 
 	/**
 	 * L'Ambito del programma (SCD/RFD)
@@ -80,21 +75,4 @@ public class ProgrammaEntity implements Serializable {
 
 	@Column(name = "STATO")
 	private String stato;
-
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("ProgrammaEntity [id=");
-		builder.append(id);
-		builder.append(", codice=");
-		builder.append(codice);
-		builder.append(", nome=");
-		builder.append(nome);
-		builder.append(", policy=");
-		builder.append(policy);
-		builder.append(", stato=");
-		builder.append(stato);
-		builder.append("]");
-		return builder.toString();
-	}
 }

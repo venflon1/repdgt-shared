@@ -31,7 +31,7 @@ public class ReferentiDelegatiEnteGestoreProgrammaEntity {
     @ManyToOne
     @MapsId(value = "idProgramma")
     @JoinColumn(name = "ID_PROGRAMMA", referencedColumnName = "ID")
-    private ProgrammaLightEntityId programmaLightEntityId;
+    private ProgrammaEntity programma;
 
     @ManyToOne
     @MapsId(value = "codFiscaleUtente")

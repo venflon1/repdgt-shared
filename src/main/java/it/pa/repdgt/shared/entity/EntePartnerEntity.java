@@ -1,4 +1,4 @@
-package it.pa.repdgt.shared.entity.light;
+package it.pa.repdgt.shared.entity;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;

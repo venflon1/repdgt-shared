@@ -31,7 +31,7 @@ public class RuoloEntity implements Serializable {
 	@Column(name = "DESCRIZIONE", nullable = false, unique = true)
 	private String descrizione;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(
 		name = "RUOLO_X_PERMESSO",
 		joinColumns = @JoinColumn(name = "RUOLO_CODICE",  referencedColumnName = "CODICE"),

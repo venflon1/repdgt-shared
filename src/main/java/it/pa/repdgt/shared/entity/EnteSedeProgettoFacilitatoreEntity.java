@@ -1,5 +1,6 @@
 package it.pa.repdgt.shared.entity;
 
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -41,4 +42,8 @@ public class EnteSedeProgettoFacilitatoreEntity {
 	@ManyToOne(targetEntity = UtenteEntity.class)
 	@JoinColumn(name = "ID_FACILITATORE", referencedColumnName = "CODICE_FISCALE")
 	private UtenteEntity facilitatore;
+	
+	// FACILITATORE O VOLONTARIO
+	@Column(name = "RUOLO_UTENTE")
+	private String ruoloUtente;
 }

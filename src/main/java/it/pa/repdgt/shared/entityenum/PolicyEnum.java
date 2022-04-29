@@ -8,9 +8,9 @@ public enum PolicyEnum {
 	,RFD("Rete dei serivizi di Facilitazione Digitale")
 	;
 	
-	private String descrizione;
+	private String value;
 	
-	private PolicyEnum(String descrizione) {
-		this.descrizione = descrizione;
+	private PolicyEnum(String value) {
+		this.value = value;
 	}
 }

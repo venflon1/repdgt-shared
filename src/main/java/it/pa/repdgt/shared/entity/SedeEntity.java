@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import it.pa.repdgt.shared.entityenum.StatoEnum;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -39,7 +38,4 @@ public class SedeEntity {
 	
 	@Column(name = "COORDINATE")
 	private String coordinate;
-	
-	@Column(name = "STATO")
-	private String stato = StatoEnum.NON_ATTIVO.getValue();
 }

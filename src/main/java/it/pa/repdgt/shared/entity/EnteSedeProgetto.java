@@ -36,8 +36,11 @@ public class EnteSedeProgetto {
 	@JoinColumn(name = "ID_PROGETTO", referencedColumnName = "ID")
 	private ProgettoEntity progetto;
 	
-	@Column(name = "RUOLO")
-	private String ruolo;
+	@Column(name = "RUOLO_ENTE")
+	private String ruoloEnte;
+	
+	@Column(name = "STATO_SEDE")
+	private String statoSede;
 	
 	@Column(name = "TIPOLOGIA_SERVIZIO")
 	private String tipologiaServizio;

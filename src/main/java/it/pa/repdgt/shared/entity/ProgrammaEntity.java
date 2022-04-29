@@ -2,6 +2,7 @@ package it.pa.repdgt.shared.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,6 +33,9 @@ public class ProgrammaEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private Long id;
+	
+	@Column(name = "CODICE", nullable = false, unique = true)
+	private String codice;
 
 	@Column(name = "NOME", nullable = false)
 	private String nome;

@@ -25,6 +25,9 @@ public class EnteEntity {
 
 	@Column(name = "NOME", nullable = true, unique = true)
 	private String nome;
+	
+	@Column(name = "NOME_BREVE", nullable = false)
+	private String nomeBreve;
 
 	@Column(name = "TIPOLOGIA_ENTE", nullable = true)
 	private String tiplogia;

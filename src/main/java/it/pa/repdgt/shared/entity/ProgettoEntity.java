@@ -31,8 +31,11 @@ public class ProgettoEntity implements Serializable {
 	@Column(name = "ID")
 	private Long id;
 
-	@Column(name = "NOME", nullable = false, length = 199)
+	@Column(name = "NOME", nullable = false)
 	private String nome;
+	
+	@Column(name = "NOME_BREVE", nullable = false)
+	private String nomeBreve;
 	
 	@Column(name = "DESCRIZIONE", nullable = true)
 	private String descrizione;

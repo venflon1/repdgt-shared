@@ -26,6 +26,9 @@ public class EnteEntity {
 	@Column(name = "NOME", nullable = true, unique = true)
 	private String nome;
 
+	@Column(name = "TIPOLOGIA_ENTE", nullable = true, unique = true)
+	private String tiplogia;
+
 //	/**
 //	 * La lista dei Progetti du cui questo (this) ente hai ruolo di GESTORE_PROGETTO
 //	 * 

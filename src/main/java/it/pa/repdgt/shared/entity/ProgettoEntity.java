@@ -45,7 +45,7 @@ public class ProgettoEntity implements Serializable {
 	@OneToOne(fetch = FetchType.EAGER, targetEntity = ProgrammaEntity.class)
 	@JoinColumn(name = "ID_PROGRAMMA", referencedColumnName = "ID")
 	private ProgrammaEntity programma;
-
+	
 	/**
 	 * L'Ente Gestore di questo (this) programma
 	 * 
@@ -54,15 +54,10 @@ public class ProgettoEntity implements Serializable {
 	@OneToOne(fetch = FetchType.EAGER, targetEntity = EnteEntity.class)
 	@JoinColumn(name = "ID_ENTE_GESTORE", referencedColumnName = "ID")
 	private EnteEntity enteGestoreProgetto;
+	
+	@Column(name = "STATO_GESTORE_PROGETTO")
+	private String statoGestoreProgetto;
 
-//    /**
-//     * Utente Referenti o Delegati dell'ente gestore di progetto
-//     *
-//     * */
-//	@JsonIgnore
-//	@OneToMany(mappedBy = "progettoLightEntityId", fetch = FetchType.EAGER)
-//	private Set<ReferentiDelegatiEnteGestoreProgettoEntity> referentiDelegatiDellEnteGestoreProgetto;
-//    
 	@Column(name = "STATO")
 	private String stato;
 }

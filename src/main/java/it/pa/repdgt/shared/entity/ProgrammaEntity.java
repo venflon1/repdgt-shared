@@ -56,6 +56,9 @@ public class ProgrammaEntity implements Serializable {
 	@OneToOne(fetch = FetchType.EAGER, targetEntity = EnteEntity.class)
 	@JoinColumn(name = "ID_ENTE_GESTORE_PROGRAMMA", referencedColumnName = "ID")
 	private EnteEntity enteGestoreProgramma;
+	
+	@Column(name = "STATO_GESTORE_PROGRAMMA")
+	private String statoGestoreProgramma;
 
 //	@JsonIgnore
 //	@OneToMany(mappedBy = "programmaLightEntityId", fetch = FetchType.EAGER)

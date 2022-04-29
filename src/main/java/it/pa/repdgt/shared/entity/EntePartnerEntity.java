@@ -1,5 +1,6 @@
 package it.pa.repdgt.shared.entity;
 
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -19,16 +20,6 @@ public class EntePartnerEntity {
 	@EmbeddedId
 	private EntePartnerKey id;
 
-//    @ManyToOne
-//    @MapsId(value = "idProgetto")
-//    @JoinColumn(name = "ID_PROGETTO", referencedColumnName = "ID")
-//    private ProgettoLightEntity progetto;
-//
-//    /**
-//     * Questi sono gli enti partner del progetto
-//     * */
-//    @ManyToOne
-//    @MapsId(value = "idEnte")
-//    @JoinColumn(name = "ID_ENTE", referencedColumnName = "ID")
-//    private EnteLightEntity enteEntity;
+	@Column(name = "STATO_ENTE_PARTNER")
+	private String statoEntePartner;
 }

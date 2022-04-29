@@ -26,7 +26,7 @@ public class EnteEntity {
 	@Column(name = "NOME", nullable = true, unique = true)
 	private String nome;
 
-	@Column(name = "TIPOLOGIA_ENTE", nullable = true, unique = true)
+	@Column(name = "TIPOLOGIA_ENTE", nullable = true)
 	private String tiplogia;
 
 //	/**
@@ -50,7 +50,4 @@ public class EnteEntity {
 //	@OneToMany(mappedBy = "enteEntity", fetch = FetchType.EAGER)
 //	private List<EntePartnerEntity> entiPartner;
 	
-	@Column(name = "STATO")
-	private String stato;
-
 }

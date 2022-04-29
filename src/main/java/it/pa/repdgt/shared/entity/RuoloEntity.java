@@ -31,6 +31,9 @@ public class RuoloEntity implements Serializable {
 	@Column(name = "DESCRIZIONE", nullable = false, unique = true)
 	private String descrizione;
 	
+	@Column(name = "PREDEFINITO")
+	private Boolean predefinito;
+	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(
 		name = "RUOLO_X_PERMESSO",
@@ -46,6 +49,7 @@ public class RuoloEntity implements Serializable {
 		this.permessi.add(permesso);
 		return this.permessi;
 	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(codice);

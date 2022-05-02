@@ -26,6 +26,6 @@ public class EnteSedeProgettoFacilitatoreKey implements Serializable {
 	@Column(name = "ID_PROGETTO")
 	private Long idProgetto;
 	
-	@Column(name = "CODICE_FISCALE")
-	private UtenteEntity idFacilitatore;
+	@Column(name = "ID_FACILITATORE")
+	private String idFacilitatore;
 }

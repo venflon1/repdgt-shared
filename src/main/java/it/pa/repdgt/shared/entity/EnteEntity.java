@@ -34,4 +34,7 @@ public class EnteEntity {
 
 	@Column(name = "TIPOLOGIA_ENTE", nullable = true)
 	private String tiplogia;
+	
+	@Column(name = "SEDE_LEGALE", nullable = true)
+	private String sedeLegale;
 }

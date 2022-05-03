@@ -19,7 +19,7 @@ public class SedeEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
-	private String id;
+	private Long id;
 	
 	@Column(name = "NOME", nullable = false, unique = true)
 	private String nome;

@@ -23,6 +23,9 @@ public class EnteEntity {
 	@Column(name = "ID")
 	private Long id;
 
+	@Column(name = "PARTITA_IVA", nullable = true, unique = true)
+	private String piva;
+
 	@Column(name = "NOME", nullable = true, unique = true)
 	private String nome;
 	
@@ -31,26 +34,4 @@ public class EnteEntity {
 
 	@Column(name = "TIPOLOGIA_ENTE", nullable = true)
 	private String tiplogia;
-
-//	/**
-//	 * La lista dei Progetti du cui questo (this) ente hai ruolo di GESTORE_PROGETTO
-//	 * 
-//	 */
-//	@JsonIgnore
-//	@OneToMany(fetch = FetchType.LAZY)
-//	@JoinColumn(name = "ID_PROGRAMMA")
-//	private List<ProgettoLightEntityNew> progettiCheGestisco;
-//
-//	/**
-//	 *  La lista dei Programmi di cui questo (this) ente ha ruolo di GESTORE_PROGRAMMA
-//	 *  
-//	 */
-//	@JsonIgnore
-//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "enteGestoreProgramma")
-//	@Column(name = "programmi")
-//	private List<ProgrammaEntity> programmiCheGestisco;
-	
-//	@OneToMany(mappedBy = "enteEntity", fetch = FetchType.EAGER)
-//	private List<EntePartnerEntity> entiPartner;
-	
 }

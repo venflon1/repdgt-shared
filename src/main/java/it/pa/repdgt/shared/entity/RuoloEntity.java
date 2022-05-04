@@ -34,20 +34,20 @@ public class RuoloEntity implements Serializable {
 	@Column(name = "PREDEFINITO")
 	private Boolean predefinito;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
-		name = "RUOLO_X_PERMESSO",
+		name = "RUOLO_X_GRUPPO",
 		joinColumns = @JoinColumn(name = "RUOLO_CODICE",  referencedColumnName = "CODICE"),
-		inverseJoinColumns = @JoinColumn(name = "PERMESSO_ID", referencedColumnName = "ID")
+		inverseJoinColumns = @JoinColumn(name = "GRUPPO_ID", referencedColumnName = "ID")
 	)
-	private List<PermessoEntity> permessi = new ArrayList<>();
+	private List<GruppoEntity> gruppi = new ArrayList<>();
 	
 	@Column(name = "STATO")
 	private String stato;
 
-	public List<PermessoEntity> addPermesso(PermessoEntity permesso) {
-		this.permessi.add(permesso);
-		return this.permessi;
+	public List<GruppoEntity> addGruppo(GruppoEntity gruppo) {
+		this.gruppi.add(gruppo);
+		return this.gruppi;
 	}
 	
 	@Override

@@ -11,8 +11,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Table(name = "GRUPPO")
+@Setter
+@Getter
 public class GruppoEntity implements Serializable {
 	@Id
 	@Column

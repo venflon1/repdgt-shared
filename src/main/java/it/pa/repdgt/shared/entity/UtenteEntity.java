@@ -7,6 +7,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -25,6 +27,10 @@ public class UtenteEntity implements Serializable {
 	private static final long serialVersionUID = -1466364242826049157L;
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
+	private Long id;
+	
 	@Column(name = "CODICE_FISCALE", nullable = false, unique = true, length = 16)
 	private String codiceFiscale;
 	

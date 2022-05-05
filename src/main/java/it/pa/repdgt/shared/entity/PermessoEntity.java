@@ -27,7 +27,10 @@ public class PermessoEntity implements Serializable {
 	@Column(name = "ID")
 	private Long id;
 	
-	@Column(name = "DESCRIZIONE", nullable = false, unique = true)
+	@Column(name = "CODICE", nullable = false, unique = true)
+	private String codice;
+	
+	@Column(name = "DESCRIZIONE", nullable = true)
 	private String descrizione;
 	
 	@Temporal(value = TemporalType.TIMESTAMP)

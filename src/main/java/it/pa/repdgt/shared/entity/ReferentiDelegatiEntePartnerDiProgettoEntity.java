@@ -6,9 +6,6 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -32,21 +29,6 @@ public class ReferentiDelegatiEntePartnerDiProgettoEntity implements Serializabl
 
 	@EmbeddedId
 	private ReferentiDelegatiEntePartnerDiProgettoKey id;
-
-	@ManyToOne
-	@MapsId(value = "idProgetto")
-	@JoinColumn(name = "ID_PROGETTO", referencedColumnName = "ID")
-	private ProgettoEntity progetto;
-	
-    @ManyToOne
-    @MapsId(value = "idEnte")
-    @JoinColumn(name = "ID_ENTE", referencedColumnName = "ID")
-    private EnteEntity ente;
-
-    @ManyToOne
-    @MapsId(value = "codFiscaleUtente")
-    @JoinColumn(name = "CF_UTENTE", referencedColumnName = "CODICE_FISCALE")
-    private UtenteEntity utente;
 
     @Column(name = "CODICE_RUOLO")
     private String codiceRuolo;

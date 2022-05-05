@@ -18,14 +18,12 @@ import javax.persistence.TemporalType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@NoArgsConstructor
-@Getter
-@Setter
 @Table(name = "PROGETTO")
+@Setter
+@Getter
 public class ProgettoEntity implements Serializable {
 	private static final long serialVersionUID = 5557015252878732182L;
 
@@ -37,11 +35,11 @@ public class ProgettoEntity implements Serializable {
 	@Column(name = "NOME", nullable = false)
 	private String nome;
 	
-	@Column(name = "DESCRIZIONE", nullable = false)
-	private String descrizione;
-	
 	@Column(name = "NOME_BREVE", nullable = false)
 	private String nomeBreve;
+
+	@Column(name = "DESCRIZIONE", nullable = false)
+	private String descrizione;
 
 	/**
 	 * Programma di appartenza di questo (this) progetto
@@ -74,4 +72,12 @@ public class ProgettoEntity implements Serializable {
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "DATA_FINE_PROGETTO")
 	private Date dataFineProgetto;
+	
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name = "DATA_ORA_CREAZIONE")
+	private Date dataOraCreazione;
+
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name = "DATA_ORA_AGGIORNAMENTO")
+	private Date dataOraAggiornamento;
 }

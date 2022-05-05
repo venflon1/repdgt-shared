@@ -8,10 +8,12 @@ import javax.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Embeddable
 @AllArgsConstructor
 @NoArgsConstructor
+@Setter
 @Getter
 public class ReferentiDelegatiEnteGestoreProgrammaKey implements Serializable {
 	private static final long serialVersionUID = 9079607167812252918L;

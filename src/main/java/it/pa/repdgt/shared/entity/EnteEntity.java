@@ -1,22 +1,26 @@
 package it.pa.repdgt.shared.entity;
 
+import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@NoArgsConstructor
-@Getter
 @Setter
+@Getter
 @Table(name = "ENTE")
-public class EnteEntity {
+public class EnteEntity implements Serializable {
+	private static final long serialVersionUID = -6310179790779394657L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,4 +41,12 @@ public class EnteEntity {
 	
 	@Column(name = "SEDE_LEGALE", nullable = true)
 	private String sedeLegale;
+	
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name = "DATA_ORA_CREAZIONE")
+	private Date dataOraCreazione;
+
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name = "DATA_ORA_AGGIORNAMENTO")
+	private Date dataOraAggiornamento;
 }

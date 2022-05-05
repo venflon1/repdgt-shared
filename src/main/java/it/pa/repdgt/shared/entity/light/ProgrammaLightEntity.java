@@ -1,5 +1,6 @@
 package it.pa.repdgt.shared.entity.light;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -13,15 +14,14 @@ import javax.persistence.Table;
 
 import it.pa.repdgt.shared.entityenum.PolicyEnum;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@NoArgsConstructor
-@Getter
-@Setter
 @Table(name = "PROGRAMMA")
-public class ProgrammaLightEntity {
+@Setter
+@Getter
+public class ProgrammaLightEntity implements Serializable {
+	private static final long serialVersionUID = 4117753743164181935L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -24,6 +24,8 @@ import lombok.Setter;
 @Setter
 @Getter
 public class GruppoEntity implements Serializable {
+	private static final long serialVersionUID = -5250146895335449710L;
+
 	@Id
 	@Column(name = "CODICE")
 	public String codice;
@@ -51,5 +53,4 @@ public class GruppoEntity implements Serializable {
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "DATA_ORA_AGGIORNAMENTO")
 	private Date dataOraAggiornamento;
-	
 }

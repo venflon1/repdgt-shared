@@ -1,6 +1,7 @@
 package it.pa.repdgt.shared.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,14 +9,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-import lombok.Data;
-import lombok.ToString;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "PERMESSO")
-@Data
-@ToString
+@Setter
+@Getter
 public class PermessoEntity implements Serializable {
 	private static final long serialVersionUID = 7781599515820836346L;
 
@@ -26,4 +29,12 @@ public class PermessoEntity implements Serializable {
 	
 	@Column(name = "DESCRIZIONE", nullable = false, unique = true)
 	private String descrizione;
+	
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name = "DATA_ORA_CREAZIONE")
+	private Date dataOraCreazione;
+
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name = "DATA_ORA_AGGIORNAMENTO")
+	private Date dataOraAggiornamento;
 }

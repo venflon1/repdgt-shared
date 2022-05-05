@@ -2,6 +2,7 @@ package it.pa.repdgt.shared.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -14,15 +15,17 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "UTENTE")
-@NoArgsConstructor
-@Data
+@Setter
+@Getter
 public class UtenteEntity implements Serializable {
 	private static final long serialVersionUID = -1466364242826049157L;
 	
@@ -57,4 +60,12 @@ public class UtenteEntity implements Serializable {
 	
 	@Column(name = "STATO", nullable = false)
 	private String stato;
+	
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name = "DATA_ORA_CREAZIONE")
+	private Date dataOraCreazione;
+
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name = "DATA_ORA_AGGIORNAMENTO")
+	private Date dataOraAggiornamento;
 }

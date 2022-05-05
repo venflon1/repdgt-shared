@@ -2,6 +2,7 @@ package it.pa.repdgt.shared.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,14 +14,16 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "RUOLO")
-@NoArgsConstructor
-@Data
+@Setter
+@Getter
 public class RuoloEntity implements Serializable {
 	private static final long serialVersionUID = 3202201467169842152L;
 
@@ -44,8 +47,16 @@ public class RuoloEntity implements Serializable {
 	
 	@Column(name = "STATO")
 	private String stato;
+	
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name = "DATA_ORA_CREAZIONE")
+	private Date dataOraCreazione;
 
-	public List<GruppoEntity> addGruppo(GruppoEntity gruppo) {
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name = "DATA_ORA_AGGIORNAMENTO")
+	private Date dataOraAggiornamento;
+
+	public List<GruppoEntity> aggiungiGruppo(GruppoEntity gruppo) {
 		this.gruppi.add(gruppo);
 		return this.gruppi;
 	}

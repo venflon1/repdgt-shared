@@ -2,7 +2,6 @@ package it.pa.repdgt.shared.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,16 +14,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import it.pa.repdgt.shared.entityenum.PolicyEnum;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@NoArgsConstructor
-@Data
+@Setter
+@Getter
 @Table(name = "PROGRAMMA")
 public class ProgrammaEntity implements Serializable {
 	private static final long serialVersionUID = -1134246828726660200L;
@@ -43,14 +44,6 @@ public class ProgrammaEntity implements Serializable {
 	@Column(name = "NOME_BREVE", nullable = false)
 	private String nomeBreve;
 	
-//	/**
-//	 * La lista dei Progetti di questo (this) Programma
-//	 * 
-//	 * */
-//	@JsonIgnore
-//	@OneToMany(fetch = FetchType.LAZY, targetEntity = ProgettoLightEntityNew.class)
-//	@JoinColumn(name = "ID_PROGRAMMA")
-//	private List<ProgettoLightEntityNew> progetti;
 
 	/**
 	 * L'Ente Gestore di questo (this) Programma
@@ -64,14 +57,6 @@ public class ProgrammaEntity implements Serializable {
 	@Column(name = "STATO_GESTORE_PROGRAMMA")
 	private String statoGestoreProgramma;
 
-//	@JsonIgnore
-//	@OneToMany(mappedBy = "programmaLightEntityId", fetch = FetchType.EAGER)
-//	private Set<ReferentiDelegatiEnteGestoreProgrammaEntity> referentiDelegatiDellEnteGestoreProgramma;
-
-	/**
-	 * L'Ambito del programma (SCD/RFD)
-	 * 
-	 * */
 	@Column(name = "POLICY")
 	@Enumerated(value = EnumType.STRING)
 	private PolicyEnum policy;
@@ -84,4 +69,12 @@ public class ProgrammaEntity implements Serializable {
 
 	@Column(name = "STATO")
 	private String stato;
+	
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name = "DATA_ORA_CREAZIONE")
+	private Date dataOraCreazione;
+
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name = "DATA_ORA_AGGIORNAMENTO")
+	private Date dataOraAggiornamento;
 }

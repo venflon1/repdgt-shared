@@ -38,7 +38,7 @@ public class RuoloEntity implements Serializable {
 	@JoinTable(
 		name = "RUOLO_X_GRUPPO",
 		joinColumns = @JoinColumn(name = "RUOLO_CODICE",  referencedColumnName = "CODICE"),
-		inverseJoinColumns = @JoinColumn(name = "GRUPPO_ID", referencedColumnName = "ID")
+		inverseJoinColumns = @JoinColumn(name = "GRUPPO_CODICE", referencedColumnName = "CODICE")
 	)
 	private List<GruppoEntity> gruppi = new ArrayList<>();
 	

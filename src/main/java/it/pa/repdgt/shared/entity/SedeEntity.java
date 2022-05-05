@@ -24,6 +24,9 @@ public class SedeEntity {
 	@Column(name = "NOME", nullable = false, unique = true)
 	private String nome;
 	
+	@Column(name = "DESCRIZIONE")
+	private String descrizione;
+	
 	@Column(name = "SERVIZI_EROGATI")
 	private String serviziErogati;
 	

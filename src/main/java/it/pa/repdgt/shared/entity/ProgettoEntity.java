@@ -1,6 +1,7 @@
 package it.pa.repdgt.shared.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -63,4 +66,12 @@ public class ProgettoEntity implements Serializable {
 
 	@Column(name = "STATO")
 	private String stato;
+	
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name = "DATA_INIZIO_PROGETTO")
+	private Date dataInizioProgetto;
+
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name = "DATA_FINE_PROGETTO")
+	private Date dataFineProgetto;
 }

@@ -32,7 +32,7 @@ public class EnteEntity {
 	@Column(name = "NOME_BREVE", nullable = false)
 	private String nomeBreve;
 
-	@Column(name = "TIPOLOGIA_ENTE", nullable = true)
+	@Column(name = "TIPOLOGIA", nullable = true)
 	private String tiplogia;
 	
 	@Column(name = "SEDE_LEGALE", nullable = true)

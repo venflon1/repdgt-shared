@@ -9,6 +9,6 @@ public interface RuoliUtentiConstants {
 	public final String DEGP = "DEGP";
 	public final String REPP = "REPP";
 	public final String DEPP = "DEPP";
-	public final String FACILITATORE = "FAL";
-	public final String VOLONTARIO   = "VOL";
+	public final String FACILITATORE = "FAC";
+	public final String VOLONTARIO = "VOL";
 }

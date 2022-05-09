@@ -31,10 +31,10 @@ public class RuoloEntity implements Serializable {
 	@Column(name = "CODICE")
 	private String codice;
 	
-	@Column(name = "DESCRIZIONE", nullable = false, unique = true)
-	private String descrizione;
+	@Column(name = "NOME", nullable = false, unique = true)
+	private String nome;
 	
-	@Column(name = "PREDEFINITO")
+	@Column(name = "PREDEFINITO", nullable = false)
 	private Boolean predefinito;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
@@ -44,9 +44,6 @@ public class RuoloEntity implements Serializable {
 		inverseJoinColumns = @JoinColumn(name = "GRUPPO_CODICE", referencedColumnName = "CODICE")
 	)
 	private List<GruppoEntity> gruppi = new ArrayList<>();
-	
-	@Column(name = "STATO")
-	private String stato;
 	
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "DATA_ORA_CREAZIONE")

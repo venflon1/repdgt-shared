@@ -66,6 +66,9 @@ public class ProgrammaEntity implements Serializable {
 	
 	@Column(name = "DATA_FINE_PROGRAMMA")
 	private Date dataFineProgramma;
+	
+	@Column(name = "DATA_TERMINAZIONE_PROGRAMMA")
+	private Date dataTerminazioneProgramma;
 
 	@Column(name = "STATO")
 	private String stato;

@@ -38,9 +38,6 @@ public class ProgettoEntity implements Serializable {
 	@Column(name = "NOME_BREVE", nullable = false)
 	private String nomeBreve;
 
-	@Column(name = "DESCRIZIONE", nullable = false)
-	private String descrizione;
-
 	/**
 	 * Programma di appartenza di questo (this) progetto
 	 * 
@@ -56,7 +53,7 @@ public class ProgettoEntity implements Serializable {
 	 * */
 	@JsonIgnore
 	@OneToOne(fetch = FetchType.EAGER, targetEntity = EnteEntity.class)
-	@JoinColumn(name = "ID_ENTE_GESTORE", referencedColumnName = "ID")
+	@JoinColumn(name = "ID_ENTE_GESTORE_PROGETTO", referencedColumnName = "ID")
 	private EnteEntity enteGestoreProgetto;
 	
 	@Column(name = "STATO_GESTORE_PROGETTO")

@@ -5,6 +5,7 @@ import lombok.Getter;
 @Getter
 public enum StatoEnum {
 	 ATTIVO("ATTIVO")
+	,ATTIVABILE("ATTIVABILE")
 	,NON_ATTIVO("NON ATTIVO")
 	,TERMINATO("TERMINATO")
 	;

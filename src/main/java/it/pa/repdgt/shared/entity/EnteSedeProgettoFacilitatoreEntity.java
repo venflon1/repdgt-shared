@@ -44,7 +44,7 @@ public class EnteSedeProgettoFacilitatoreEntity implements Serializable {
 	@JoinColumn(name = "ID_PROGETTO", referencedColumnName = "ID")
 	private ProgettoEntity progetto;
 	
-	@MapsId(value = "idFacilitarore")
+	@MapsId(value = "idFacilitatore")
 	@ManyToOne(targetEntity = UtenteEntity.class)
 	@JoinColumn(name = "ID_FACILITATORE", referencedColumnName = "CODICE_FISCALE")
 	private UtenteEntity facilitatore;

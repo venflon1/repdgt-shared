@@ -6,9 +6,6 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -28,26 +25,6 @@ public class EnteSedeProgettoFacilitatoreEntity implements Serializable {
 
 	@EmbeddedId
 	private EnteSedeProgettoFacilitatoreKey id;
-	
-	@MapsId(value = "idEnte")
-	@ManyToOne(targetEntity = EnteEntity.class)
-	@JoinColumn(name = "ID_ENTE", referencedColumnName = "ID")
-	private EnteEntity ente;
-	
-	@MapsId(value = "idSede")
-	@ManyToOne(targetEntity = SedeEntity.class)
-	@JoinColumn(name = "ID_SEDE", referencedColumnName = "ID")
-	private SedeEntity sede;
-	
-	@MapsId(value = "idProgetto")
-	@ManyToOne(targetEntity = ProgettoEntity.class)
-	@JoinColumn(name = "ID_PROGETTO", referencedColumnName = "ID")
-	private ProgettoEntity progetto;
-	
-	@MapsId(value = "idFacilitatore")
-	@ManyToOne(targetEntity = UtenteEntity.class)
-	@JoinColumn(name = "ID_FACILITATORE", referencedColumnName = "CODICE_FISCALE")
-	private UtenteEntity facilitatore;
 	
 	// FACILITATORE O VOLONTARIO
 	@Column(name = "RUOLO_UTENTE")

@@ -8,6 +8,7 @@ public enum StatoEnum {
 	,ATTIVABILE("ATTIVABILE")
 	,NON_ATTIVO("NON ATTIVO")
 	,TERMINATO("TERMINATO")
+	,CANCELLATO("CANCELLATO")
 	;
 	
 	private String value;

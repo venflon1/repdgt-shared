@@ -40,4 +40,7 @@ public class ReferentiDelegatiEnteGestoreProgettoEntity implements Serializable 
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "DATA_ORA_AGGIORNAMENTO")
 	private Date dataOraAggiornamento;
+	
+	@Column(name = "CANCELLATO")
+	private boolean cancellato;
 }

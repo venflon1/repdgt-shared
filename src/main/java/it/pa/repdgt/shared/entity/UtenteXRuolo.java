@@ -23,7 +23,7 @@ public class UtenteXRuolo implements Serializable {
 
 	@EmbeddedId
 	private UtenteXRuoloKey id;
-
+	
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "DATA_ORA_CREAZIONE")
 	private Date dataOraCreazione;
@@ -31,4 +31,7 @@ public class UtenteXRuolo implements Serializable {
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "DATA_ORA_AGGIORNAMENTO")
 	private Date dataOraAggiornamento;
+	
+	@Column(name = "CANCELLATO")
+	private boolean cancellato;
 }

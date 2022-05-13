@@ -33,6 +33,9 @@ public class ReferentiDelegatiEnteGestoreProgettoEntity implements Serializable 
     @Column(name = "CODICE_RUOLO")
     private String codiceRuolo;
     
+    @Column(name = "STATO_UTENTE")
+	private String statoUtente;
+    
     @Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "DATA_ORA_CREAZIONE")
 	private Date dataOraCreazione;

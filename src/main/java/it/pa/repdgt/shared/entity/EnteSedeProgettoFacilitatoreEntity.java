@@ -30,6 +30,9 @@ public class EnteSedeProgettoFacilitatoreEntity implements Serializable {
 	@Column(name = "RUOLO_UTENTE")
 	private String ruoloUtente;
 	
+	@Column(name = "STATO_UTENTE")
+	private String statoUtente;
+	
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "DATA_ORA_CREAZIONE")
 	private Date dataOraCreazione;

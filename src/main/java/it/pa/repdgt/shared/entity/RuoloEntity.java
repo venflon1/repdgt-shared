@@ -52,6 +52,9 @@ public class RuoloEntity implements Serializable {
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "DATA_ORA_AGGIORNAMENTO")
 	private Date dataOraAggiornamento;
+	
+	@Column(name = "STATO")
+	private String stato;
 
 	public List<GruppoEntity> aggiungiGruppo(GruppoEntity gruppo) {
 		this.gruppi.add(gruppo);

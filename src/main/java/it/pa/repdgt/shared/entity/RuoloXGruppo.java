@@ -33,5 +33,5 @@ public class RuoloXGruppo implements Serializable {
 	private Date dataOraAggiornamento;
 	
 	@Column(name = "CANCELLATO")
-	private boolean cancellato;
+	private Boolean cancellato;
 }

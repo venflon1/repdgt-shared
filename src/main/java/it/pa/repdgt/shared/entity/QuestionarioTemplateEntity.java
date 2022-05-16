@@ -1,11 +1,14 @@
 package it.pa.repdgt.shared.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +17,7 @@ import lombok.Setter;
 @Table(name = "QUESTIONARIO_TEMPLATE")
 @Setter
 @Getter
-public class QuestionarioTemplate implements Serializable { 
+public class QuestionarioTemplateEntity implements Serializable { 
 	private static final long serialVersionUID = -3997184755252624867L;
 
 	/** 
@@ -33,4 +36,12 @@ public class QuestionarioTemplate implements Serializable {
 	
 	@Column(name = "TIPOLOGIA_QUESTIONARIO")
 	private String tipologiaQuestionario;
+	
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name = "DATA_ORA_CREAZIONE")
+	private Date dataOraCreazione;
+
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name = "DATA_ORA_AGGIORNAMENTO")
+	private Date dataOraAggiornamento;
 }

@@ -63,18 +63,18 @@ public class ProgettoEntity implements Serializable {
 	private String stato;
 	
 	@Temporal(value = TemporalType.TIMESTAMP)
-	@Column(name = "DATA_INIZIO_PROGETTO")
-	private Date dataInizioProgetto;
-
-	@Temporal(value = TemporalType.TIMESTAMP)
-	@Column(name = "DATA_FINE_PROGETTO")
-	private Date dataFineProgetto;
-	
-	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "DATA_ORA_CREAZIONE")
 	private Date dataOraCreazione;
 
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "DATA_ORA_AGGIORNAMENTO")
 	private Date dataOraAggiornamento;
+	
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name = "DATA_ORA_ATTIVAZIONE")
+	private Date dataOraAttivazione;
+	
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name = "DATA_ORA_TERMINAZIONE")
+	private Date dataOraTerminazione;
 }

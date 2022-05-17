@@ -43,7 +43,6 @@ public class ProgrammaEntity implements Serializable {
 	
 	@Column(name = "NOME_BREVE", nullable = false)
 	private String nomeBreve;
-	
 
 	/**
 	 * L'Ente Gestore di questo (this) Programma

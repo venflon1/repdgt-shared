@@ -1,12 +1,16 @@
 package it.pa.repdgt.shared.repository.storico;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import it.pa.repdgt.shared.entity.ProgrammaEntity;
 import it.pa.repdgt.shared.entity.storico.StoricoEnteGestoreProgettoEntity;
 import it.pa.repdgt.shared.entity.storico.StoricoEnteGestoreProgrammaEntity;
 import it.pa.repdgt.shared.entity.storico.StoricoEntePartnerEntity;
+import it.pa.repdgt.shared.entityenum.StatoEnum;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -20,8 +24,13 @@ public class StoricoService {
 	private StoricoEntePartnerRepository storicoEntePartnerRepository;
 
 	@Transactional(rollbackFor = Exception.class)
-	public void storicizzaEnteGestoreProgramma(final StoricoEnteGestoreProgrammaEntity storicoEnteGestoreProgrammaEntity) {
-		this.storicoEnteGestoreProgrammaRepository.save(storicoEnteGestoreProgrammaEntity);
+	public void storicizzaEnteGestoreProgramma(final ProgrammaEntity programmaEntity) {
+		StoricoEnteGestoreProgrammaEntity storicoEnteGestoreProgramma = new StoricoEnteGestoreProgrammaEntity();
+		storicoEnteGestoreProgramma.setIdProgramma(programmaEntity.getId());
+		storicoEnteGestoreProgramma.setIdEnte(programmaEntity.getEnteGestoreProgramma().getId());
+		storicoEnteGestoreProgramma.setStato(StatoEnum.TERMINATO.getValue());
+		storicoEnteGestoreProgramma.setDataOraCreazione(new Date());
+		this.storicoEnteGestoreProgrammaRepository.save(storicoEnteGestoreProgramma);
 		log.info("Ente Gestore Programma storicizzato.");
 	}
 

@@ -19,7 +19,7 @@ import lombok.Setter;
 @Table(name = "STORICO_ENTE_PARTNER")
 @Setter
 @Getter
-public class StoricoEntePartnerEnitity implements Serializable {
+public class StoricoEntePartnerEntity implements Serializable {
 	private static final long serialVersionUID = -767304162567037316L;
 
 	@Id

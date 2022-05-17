@@ -16,22 +16,26 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "STORICO_ENTE_GESTORE_PROGRAMMA")
+@Table(name = "STORICO_ENTE_GESTORE_PROGETTO")
 @Setter
 @Getter
-public class StoricoEnteGestoreProgrammaEnitity implements Serializable {
-	private static final long serialVersionUID = -1312484717572856055L;
+public class StoricoEnteGestoreProgettoEntity implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2923601798326996692L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
 	private Long id;
 
 	@Column(name = "PROGRAMMA_ID", nullable = false)
 	private Long idProgramma;
 
-	@Column(name = "ENTE_ID", nullable = false)
-	private Long idEnte;
+
+	@Column(name = "PROGETTO_ID", nullable = false)
+	private Long idProgetto;
+	
 	
 	@Column(name = "STATO", nullable = false)
 	private String stato;

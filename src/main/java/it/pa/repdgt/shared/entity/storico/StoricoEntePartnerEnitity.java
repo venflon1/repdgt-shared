@@ -1,4 +1,4 @@
-package it.pa.repdgt.shared.storico.entity;
+package it.pa.repdgt.shared.entity.storico;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -16,20 +16,16 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "STORICO_ENTE_GESTORE_PROGRAMMA")
+@Table(name = "STORICO_ENTE_PARTNER")
 @Setter
 @Getter
-public class StoricoEnteGestoreProgrammaEnitity implements Serializable {
-	private static final long serialVersionUID = -1312484717572856055L;
+public class StoricoEntePartnerEnitity implements Serializable {
+	private static final long serialVersionUID = -767304162567037316L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
 	private Long id;
-
-	@Column(name = "PROGRAMMA_ID", nullable = false)
-	private Long idProgramma;
-
+	
 	@Column(name = "ENTE_ID", nullable = false)
 	private Long idEnte;
 	

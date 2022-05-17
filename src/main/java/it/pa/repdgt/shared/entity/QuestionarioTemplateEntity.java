@@ -23,7 +23,7 @@ public class QuestionarioTemplateEntity implements Serializable {
 	/** 
 	 * Id questionarioTemplate staccato da mongoDB.
 	 * L'id coincide con l'id della collection QuestionarioTemplate.
-	 */
+	**/
 	@Id
 	@Column(name = "ID")
 	private String id;

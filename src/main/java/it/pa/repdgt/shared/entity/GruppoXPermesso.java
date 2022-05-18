@@ -31,7 +31,4 @@ public class GruppoXPermesso implements Serializable {
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "DATA_ORA_AGGIORNAMENTO")
 	private Date dataOraAggiornamento;
-
-	@Column(name = "cancellato")
-	private boolean cancellato;
 }

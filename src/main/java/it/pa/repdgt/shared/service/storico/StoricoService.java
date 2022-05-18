@@ -1,4 +1,4 @@
-package it.pa.repdgt.shared.repository.storico;
+package it.pa.repdgt.shared.service.storico;
 
 import java.util.Date;
 
@@ -13,6 +13,9 @@ import it.pa.repdgt.shared.entity.storico.StoricoEnteGestoreProgettoEntity;
 import it.pa.repdgt.shared.entity.storico.StoricoEnteGestoreProgrammaEntity;
 import it.pa.repdgt.shared.entity.storico.StoricoEntePartnerEntity;
 import it.pa.repdgt.shared.entityenum.StatoEnum;
+import it.pa.repdgt.shared.repository.storico.StoricoEnteGestoreProgettoRepository;
+import it.pa.repdgt.shared.repository.storico.StoricoEnteGestoreProgrammaRepository;
+import it.pa.repdgt.shared.repository.storico.StoricoEntePartnerRepository;
 import lombok.extern.slf4j.Slf4j;
 
 @Service

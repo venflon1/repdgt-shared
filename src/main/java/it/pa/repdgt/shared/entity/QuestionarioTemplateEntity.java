@@ -18,12 +18,12 @@ import lombok.Setter;
 @Setter
 @Getter
 public class QuestionarioTemplateEntity implements Serializable { 
-	private static final long serialVersionUID = -3997184755252624867L;
+	private static final long serialVersionUID = 1881729313244042919L;
 
 	/** 
 	 * Id questionarioTemplate staccato da mongoDB.
 	 * L'id coincide con l'id della collection QuestionarioTemplate.
-	**/
+	 **/
 	@Id
 	@Column(name = "ID")
 	private String id;

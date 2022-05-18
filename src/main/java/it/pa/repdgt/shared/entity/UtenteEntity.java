@@ -68,4 +68,7 @@ public class UtenteEntity implements Serializable {
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "DATA_ORA_AGGIORNAMENTO")
 	private Date dataOraAggiornamento;
+	
+	@Column(name = "INTEGRAZIONE")
+	private Boolean integrazione;
 }

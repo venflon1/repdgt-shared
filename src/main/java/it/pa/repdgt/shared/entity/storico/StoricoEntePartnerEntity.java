@@ -29,6 +29,9 @@ public class StoricoEntePartnerEntity implements Serializable {
 	@Column(name = "ENTE_ID", nullable = false)
 	private Long idEnte;
 	
+	@Column(name = "PROGETTO_ID", nullable = false)
+	private Long idProgetto;
+	
 	@Column(name = "STATO", nullable = false)
 	private String stato;
 	

@@ -29,8 +29,9 @@ public class StoricoEnteGestoreProgettoEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "PROGRAMMA_ID", nullable = false)
-	private Long idProgramma;
+
+	@Column(name = "ENTE_ID", nullable = false)
+	private Long idEnte;
 
 
 	@Column(name = "PROGETTO_ID", nullable = false)

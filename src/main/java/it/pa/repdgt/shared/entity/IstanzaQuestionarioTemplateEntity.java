@@ -20,7 +20,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class IstanzaQuestionarioTemplateEntity implements Serializable {
-	private static final long serialVersionUID = 2891025158768854287L;
+	private static final long serialVersionUID = 4648394713877504006L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

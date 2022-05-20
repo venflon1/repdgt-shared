@@ -33,9 +33,9 @@ public class AWSPinpointService {
 	
 	@Value(value = "${aws.app-id}")
 	private String appId;
-	@Value(value = "${aws.access-key}")
+	@Value(value = "${aws.pinpoint.access-key}")
 	private String accessKey;
-	@Value(value = "${aws.secret-key}")
+	@Value(value = "${aws.pinpoint.secret-key}")
 	private String secretKey;
 
 	public PinpointClient getClient() {

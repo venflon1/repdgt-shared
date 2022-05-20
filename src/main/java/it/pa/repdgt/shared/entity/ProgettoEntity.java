@@ -61,6 +61,10 @@ public class ProgettoEntity implements Serializable {
 
 	@Column(name = "STATO")
 	private String stato;
+
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name = "DATA_ATTIVABILITA")
+	private Date dataAttivabilita;
 	
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "DATA_ORA_CREAZIONE")

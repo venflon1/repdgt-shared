@@ -66,5 +66,10 @@
 			<groupId>software.amazon.awssdk</groupId>
 			<artifactId>pinpoint</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-location</artifactId>
+			<version>1.12.223</version>
+		</dependency>
 	</dependencies>
 </project>

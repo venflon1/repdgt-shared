@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import it.pa.repdgt.shared.exception.InvioOTPException;
+import it.pa.repdgt.shared.exception.InvioEmailException;
 import lombok.extern.slf4j.Slf4j;
 import software.amazon.awssdk.services.pinpoint.model.SendMessagesRequest;
 import software.amazon.awssdk.services.pinpoint.model.SendMessagesResponse;
@@ -30,7 +30,7 @@ public class EmailService {
 			return rispostaDaRichiestaInvioEmail;
 		} catch (Exception exc) {
 			String messaggioErrore = String.format("Errore invio email a '%s'", indirizzoEmailDestinatario);
-			throw new InvioOTPException(messaggioErrore, exc);
+			throw new InvioEmailException(messaggioErrore, exc);
 		}
 	}
 }

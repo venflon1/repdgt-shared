@@ -27,25 +27,25 @@ public class FasciaOrarioAperturaSedeEntity implements Serializable {
 	@Column(name = "ID")
 	private Long id;
 	
-	@Column(name = "GIORNO_APERTURA", nullable = false, unique = true)
+	@Column(name = "GIORNO_APERTURA", nullable = false)
 	private String giornoAperturaSede;
 	
-	@Column(name = "ORARIO_APERTURA")
+	@Column(name = "ORARIO_APERTURA", nullable = false)
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date orarioAperuturaSede;
 	
-	@Column(name = "ORARIO_CHIUSURA")
+	@Column(name = "ORARIO_CHIUSURA", nullable = false)
 	@Temporal(value = TemporalType.TIMESTAMP)
 	private Date orarioChiusuraSede;
 
-	@Column(name = "SEDE_ID")
+	@Column(name = "SEDE_ID", nullable = false)
 	private Long idSede;
 	
 	@Temporal(value = TemporalType.TIMESTAMP)
-	@Column(name = "DATA_ORA_CREAZIONE")
+	@Column(name = "DATA_ORA_CREAZIONE", nullable = false)
 	private Date dataOraCreazione;
 
 	@Temporal(value = TemporalType.TIMESTAMP)
-	@Column(name = "DATA_ORA_AGGIORNAMENTO")
+	@Column(name = "DATA_ORA_AGGIORNAMENTO", nullable = true)
 	private Date dataOraAggiornamento;
 }

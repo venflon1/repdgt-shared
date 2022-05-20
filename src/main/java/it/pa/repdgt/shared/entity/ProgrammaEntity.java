@@ -35,7 +35,7 @@ public class ProgrammaEntity implements Serializable {
 	@Column(name = "ID")
 	private Long id;
 	
-	@Column(name = "CODICE", nullable = false, unique = true)
+	@Column(name = "CODICE", unique = true)
 	private String codice;
 
 	@Column(name = "NOME", nullable = false)

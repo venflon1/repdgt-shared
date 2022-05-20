@@ -20,11 +20,10 @@ public class EmailService {
 	
 	public SendMessagesResponse inviaEmail(
 			@NotNull final String oggetto, 
-			@NotNull final String indirizzoEmailMittente, 
 			@NotNull final String indirizzoEmailDestinatario, 
 			@NotNull final String corpoEmailinHtml) {
 		try {
-			final SendMessagesRequest richiestaInvioEmail = this.pinpoint.creaRichiestaInvioEmail(oggetto, indirizzoEmailMittente, indirizzoEmailDestinatario, corpoEmailinHtml);
+			final SendMessagesRequest richiestaInvioEmail = this.pinpoint.creaRichiestaInvioEmail(oggetto, indirizzoEmailDestinatario, corpoEmailinHtml);
 			final SendMessagesResponse  rispostaDaRichiestaInvioEmail = this.pinpoint.getClient().sendMessages(richiestaInvioEmail);
 			log.info("sendMessagesResponse = {}", rispostaDaRichiestaInvioEmail);
 			return rispostaDaRichiestaInvioEmail;

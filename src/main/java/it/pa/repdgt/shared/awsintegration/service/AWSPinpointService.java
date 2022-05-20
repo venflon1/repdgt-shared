@@ -27,6 +27,7 @@ import software.amazon.awssdk.services.pinpoint.model.VerifyOtpMessageRequest;
 @Service
 @Scope("singleton")
 public class AWSPinpointService {
+	private static final String INDIRIZZO_EMAIL_MITTENTE = "RepDigDev@mitd.technology";
 	private static final String REFERENCE_ID_REQ_RESP = "RepDGDevOTP";
 	private static final String CHARSET_EMAIL = "UTF-8";
 	
@@ -66,7 +67,6 @@ public class AWSPinpointService {
 
 	public SendMessagesRequest creaRichiestaInvioEmail(
 			final String subject, 
-			final String senderAddress, 
 			final String toAddress, 
 			final String htmlBody) {
 		final SimpleEmailPart email = SimpleEmailPart.builder()
@@ -81,7 +81,7 @@ public class AWSPinpointService {
 
 		final EmailMessage emailMessage = EmailMessage.builder()
 											.body(htmlBody)
-											.fromAddress(senderAddress)
+											.fromAddress(INDIRIZZO_EMAIL_MITTENTE)
 											.simpleEmail(SimpleEmail.builder()
 													.htmlPart(email)
 													.subject(oggetto)

@@ -50,6 +50,14 @@ public class EnteSedeProgetto implements Serializable {
 	
 	@Column(name = "TIPOLOGIA_SERVIZIO")
 	private String tipologiaServizio;
+
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name = "DATA_ATTIVAZIONE_SEDE")
+	private Date dataAttivazioneSede;
+
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name = "DATA_DISATTIVAZIONE_SEDE")
+	private Date dataDissattivazioneSede;
 	
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "DATA_ORA_CREAZIONE")

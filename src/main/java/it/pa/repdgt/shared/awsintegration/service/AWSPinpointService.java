@@ -48,7 +48,7 @@ public class AWSPinpointService {
 	public SendOtpMessageRequest creaRichiestaPerInvioOTP(final String numeroDestinatario) {
 		final SendOTPMessageRequestParameters sendOTPMessageRequestParameters = SendOTPMessageRequestParameters
 				.builder().brandName("Repubblica Digitale").channel("SMS").destinationIdentity(numeroDestinatario)
-				.language("en-US").originationIdentity(REFERENCE_ID_REQ_RESP).referenceId(REFERENCE_ID_REQ_RESP)
+				.language("it-IT").originationIdentity(REFERENCE_ID_REQ_RESP).referenceId(REFERENCE_ID_REQ_RESP)
 				.codeLength(6).validityPeriod(15).build();
 
 		return SendOtpMessageRequest.builder().applicationId(this.appId)

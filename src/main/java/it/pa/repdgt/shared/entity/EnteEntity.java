@@ -42,6 +42,9 @@ public class EnteEntity implements Serializable {
 	@Column(name = "SEDE_LEGALE", nullable = true)
 	private String sedeLegale;
 	
+	@Column(name = "INDIRIZZO_PEC", nullable = true)
+	private String indirizzoPec;
+	
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "DATA_ORA_CREAZIONE")
 	private Date dataOraCreazione;

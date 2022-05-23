@@ -50,6 +50,12 @@ public class UtenteEntity implements Serializable {
 	@Column(name = "TELEFONO", nullable = true)
 	private String telefono;
 	
+	@Column(name = "MANSIONE", nullable = true)
+	private String mansione;
+	
+	@Column(name = "TIPO_CONTRATTO", nullable = true)
+	private String tipoContratto;
+	
 	@ManyToMany(fetch = FetchType.EAGER, targetEntity = RuoloEntity.class)
 	@JoinTable(
 		name = "UTENTE_X_RUOLO", 

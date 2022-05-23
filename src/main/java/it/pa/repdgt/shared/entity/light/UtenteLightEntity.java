@@ -38,4 +38,10 @@ public class UtenteLightEntity implements Serializable {
 	
 	@Column(name = "TELEFONO")
 	private String telefono;
+	
+	@Column(name = "MANSIONE")
+	private String mansione;
+	
+	@Column(name = "TIPO_CONTRATTO")
+	private String tipoContratto;
 }

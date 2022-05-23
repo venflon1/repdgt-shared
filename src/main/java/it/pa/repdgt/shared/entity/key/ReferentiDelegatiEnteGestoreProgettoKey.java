@@ -20,7 +20,11 @@ public class ReferentiDelegatiEnteGestoreProgettoKey implements Serializable {
 	
 	@Column(name = "ID_PROGETTO")
 	private Long idProgetto;
+	
 	@Column(name = "CF_UTENTE")
 	private String codFiscaleUtente;
+	
+	@Column(name = "ID_ENTE")
+	private Long idEnte;
 	
 }

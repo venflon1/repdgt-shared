@@ -20,6 +20,10 @@ public class ReferentiDelegatiEnteGestoreProgrammaKey implements Serializable {
 
 	@Column(name = "ID_PROGRAMMA")
 	private Long idProgramma;
+	
 	@Column(name = "CF_UTENTE")
 	private String codFiscaleUtente;
+	
+	@Column(name = "ID_ENTE")
+	private Long idEnte;
 }

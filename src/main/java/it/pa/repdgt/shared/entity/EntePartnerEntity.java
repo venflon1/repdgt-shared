@@ -29,6 +29,9 @@ public class EntePartnerEntity implements Serializable {
 	@Column(name = "STATO_ENTE_PARTNER")
 	private String statoEntePartner;
 	
+	@Column(name = "TERMINATO_SINGOLARMENTE")
+	private boolean terminatoSingolarmente;
+	
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "DATA_ORA_CREAZIONE")
 	private Date dataOraCreazione;

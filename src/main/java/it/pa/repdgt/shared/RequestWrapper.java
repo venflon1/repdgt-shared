@@ -28,10 +28,13 @@ public class RequestWrapper extends HttpServletRequestWrapper {
 		
         public RequestWrapper(final HttpServletRequest httpServletRequest) throws IOException {
             super(httpServletRequest);
-            
+          
+            // to fix h2 in memory db
+            httpServletRequest.getParameterNames();
+
             final String inputCorpoRichiesta = this.getCorpoRichiesta(httpServletRequest);
             if(inputCorpoRichiesta != null  && !inputCorpoRichiesta.trim().isEmpty()) {
-//	            this.body = this.getCorpoRichiestaArricchitaConDatiContesto(inputCorpoRichiesta, httpServletRequest);
+	            this.body = this.getCorpoRichiestaArricchitaConDatiContesto(inputCorpoRichiesta, httpServletRequest);
             }
         }
 

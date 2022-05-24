@@ -37,7 +37,7 @@ public class AWSLocatorService {
 	    final SearchPlaceIndexForTextRequest searchPlaceIndexForTextRequests = new SearchPlaceIndexForTextRequest();
 //		searchPlaceIndexForTextRequests.setBiasPosition(null);
 //		searchPlaceIndexForTextRequests.setFilterBBox(null);
-		searchPlaceIndexForTextRequests.setIndexName("eu-central-1");
+		searchPlaceIndexForTextRequests.setIndexName("testIndex");
 		searchPlaceIndexForTextRequests.setFilterCountries(Arrays.asList("ITA"));
 		searchPlaceIndexForTextRequests.setLanguage("it-IT");
 		searchPlaceIndexForTextRequests.setMaxResults(7);

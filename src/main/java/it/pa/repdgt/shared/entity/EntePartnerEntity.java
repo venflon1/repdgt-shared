@@ -30,7 +30,7 @@ public class EntePartnerEntity implements Serializable {
 	private String statoEntePartner;
 	
 	@Column(name = "TERMINATO_SINGOLARMENTE")
-	private boolean terminatoSingolarmente;
+	private Boolean terminatoSingolarmente;
 	
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "DATA_ORA_CREAZIONE")

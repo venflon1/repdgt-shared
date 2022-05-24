@@ -16,25 +16,18 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "SEDE")
+@Table(name = "INDIRIZZO_SEDE")
 @Setter
 @Getter
-public class SedeEntity implements Serializable {
-	private static final long serialVersionUID = -5906737112762249324L;
+public class IndirizzoSedeEntity implements Serializable {
+	private static final long serialVersionUID = 4557278171360251665L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
 	private Long id;
 	
-	@Column(name = "NOME", nullable = false, unique = true)
-	private String nome;
-	
-	@Column(name = "DESCRIZIONE")
-	private String descrizione;
-	
-	@Column(name = "SERVIZI_EROGATI")
-	private String serviziErogati;
+	@Column(name = "SEDE_ID")
+	private Long idSede;
 	
 	@Column(name = "NAZIONE")
 	private String nazione;
@@ -53,15 +46,6 @@ public class SedeEntity implements Serializable {
 	
 	@Column(name = "CAP")
 	private String cap;
-	
-	@Column(name = "ITINERE")
-	private Boolean itinere = false;
-	
-	@Column(name = "AREA")
-	private String area;
-	
-	@Column(name = "COORDINATE")
-	private String coordinate;
 	
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "DATA_ORA_CREAZIONE")

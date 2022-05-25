@@ -34,8 +34,11 @@ public class QuestionarioTemplateEntity implements Serializable {
 	@Column(name = "STATO", nullable = false)
 	private String stato;
 	
-	@Column(name = "TIPOLOGIA_QUESTIONARIO")
-	private String tipologiaQuestionario;
+	@Column(name = "DEFAULT_RFD", nullable = false)
+	private Boolean defaultRFD;
+	
+	@Column(name = "DEFAULT_SCD", nullable = false)
+	private Boolean defaultSCD;
 	
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "DATA_ORA_CREAZIONE")

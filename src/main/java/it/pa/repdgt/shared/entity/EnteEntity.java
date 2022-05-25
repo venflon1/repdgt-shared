@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -43,6 +44,7 @@ public class EnteEntity implements Serializable {
 	private String sedeLegale;
 	
 	@Column(name = "INDIRIZZO_PEC", nullable = true)
+	@Email
 	private String indirizzoPec;
 	
 	@Temporal(value = TemporalType.TIMESTAMP)

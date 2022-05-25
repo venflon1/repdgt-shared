@@ -5,7 +5,18 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.ReadListener;
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -22,19 +33,24 @@ public class RequestWrapper extends HttpServletRequestWrapper {
         private static final String AUTH_TOKEN_HEADER = "authToken";
         private static final String USER_ROLE_HEADER  = "userRole";
         private static final String CODICE_RUOLO = "codiceRuolo";
+        private static final String CODICE_FISCALE = "codiceFiscale";
         
         private ObjectMapper objectMapper = new ObjectMapper();
 		private String body;
 		
         public RequestWrapper(final HttpServletRequest httpServletRequest) throws IOException {
             super(httpServletRequest);
-          
+            
             // to fix h2 in memory db
             httpServletRequest.getParameterNames();
+            
+            Map<String, String> headers = this.getRequestHeaders(httpServletRequest);
+             String authToken = headers.get(AUTH_TOKEN_HEADER);
+             String codiceRuolo = headers.get(USER_ROLE_HEADER);
 
             final String inputCorpoRichiesta = this.getCorpoRichiesta(httpServletRequest);
             if(inputCorpoRichiesta != null  && !inputCorpoRichiesta.trim().isEmpty()) {
-	            this.body = this.getCorpoRichiestaArricchitaConDatiContesto(inputCorpoRichiesta, httpServletRequest);
+	            this.body = this.getCorpoRichiestaArricchitaConDatiContesto(inputCorpoRichiesta, authToken, codiceRuolo);
             }
         }
 
@@ -57,12 +73,41 @@ public class RequestWrapper extends HttpServletRequestWrapper {
 			return stringBuilder.toString();
 		}
         
-    	public String getCorpoRichiestaArricchitaConDatiContesto(final String corpoRichiesta, final HttpServletRequest httpServletRequest) throws JsonProcessingException, JsonMappingException {
+    	public String getCorpoRichiestaArricchitaConDatiContesto(final String corpoRichiesta, String jwt, String codiceRuolo) throws JsonProcessingException, JsonMappingException {
 			final JsonNode jsonNode = objectMapper.readTree(corpoRichiesta);
 			final ObjectNode objectNode = (ObjectNode) jsonNode;
 			
-//			objectNode.put(AUTH_TOKEN_HEADER, "");	// setting valore con decodifica auth_token 
-//			objectNode.put(CODICE_RUOLO, httpServletRequest.getHeader(USER_ROLE_HEADER));
+
+			/*prova decode payload jwt esempio
+			 * {
+				    "iss": "Online JWT Builder",
+				    "iat": 1653487398,
+				    "exp": 1685023398,
+				    "aud": "www.example.com",
+				    "sub": "jrocket@example.com",
+				    "GivenName": "Johnny",
+				    "Surname": "Rocket",
+				    "Email": "jrocket@example.com",
+				    "Role": [
+				        "Manager",
+				        "Project Administrator"
+				    ]
+				}
+			 */
+			//JWT esempio
+//			String jwt="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9."
+//					+ "eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE2NTM0ODczOTgsImV4cCI6MTY4NTAyMzM5OCwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQiLCJFbWFpbCI6Impyb2NrZXRAZXhhbXBsZS5jb20iLCJSb2xlIjpbIk1hbmFnZXIiLCJQcm9qZWN0IEFkbWluaXN0cmF0b3IiXX0."
+//					+ "AXZ8TntEPAjbdzHrPCp7UKrems7bX1pxj7g7DNOvni4";
+			//split JWT into 3 parts with . delimiter (part 1 = HEADER, part 2 = PAYLOAD, part 3 = SIGNATURE (Algorith (header + payload), secretKey)
+			String[] parts = jwt.split("\\.");
+			//String header = decode(parts[0]);
+			String payload = decode(parts[1]); //TODO: mappare da stringa a oggetto il payload
+			//String signature = decode(parts[2]);
+//			System.out.println("JWT DECODIFICATO: " + payload);
+			//////////////////////////////////////////////////////////////////
+			
+//			objectNode.put(CODICE_FISCALE, payload.getCodiceFiscale);	// setting valore con decodifica auth_token 
+//			objectNode.put(CODICE_RUOLO, codiceRuolo);
 		
 			return jsonNode.toString();
 		}
@@ -97,4 +142,22 @@ public class RequestWrapper extends HttpServletRequestWrapper {
         public BufferedReader getReader() throws IOException {
             return new BufferedReader(new InputStreamReader(this.getInputStream()));
         }
+        
+        private static String decode(String encodedString) {
+            return new String(Base64.getUrlDecoder().decode(encodedString));
+        }
+        
+        private Map<String, String> getRequestHeaders(HttpServletRequest request) {
+    		Map<String, String> headersMap = new HashMap<String, String>();
+
+    		Enumeration<String> headersName = request.getHeaderNames();
+    		
+    		
+    		while (headersName.hasMoreElements()) {
+    			String headerName  = (String) headersName.nextElement();
+    			String headerValue = request.getHeader(headerName);
+    			headersMap.put(headerName, headerValue);
+    		}
+    		return headersMap;
+    	}
 }

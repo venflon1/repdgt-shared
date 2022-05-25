@@ -77,5 +77,10 @@
 			<artifactId>aws-java-sdk-location</artifactId>
 			<version>1.12.223</version>
 		</dependency>
+		<dependency>
+		    <groupId>io.jsonwebtoken</groupId>
+		    <artifactId>jjwt</artifactId>
+		    <version>RELEASE</version>
+		</dependency>
 	</dependencies>
 </project>

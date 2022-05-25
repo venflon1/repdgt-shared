@@ -8,6 +8,8 @@ import org.springframework.validation.annotation.Validated;
 
 import it.pa.repdgt.shared.exception.InvioEmailException;
 import lombok.extern.slf4j.Slf4j;
+import software.amazon.awssdk.services.pinpoint.model.GetEmailTemplateRequest;
+import software.amazon.awssdk.services.pinpoint.model.GetEmailTemplateResponse;
 import software.amazon.awssdk.services.pinpoint.model.SendMessagesRequest;
 import software.amazon.awssdk.services.pinpoint.model.SendMessagesResponse;
 
@@ -20,10 +22,12 @@ public class EmailService {
 	
 	public SendMessagesResponse inviaEmail(
 			@NotNull final String oggetto, 
-			@NotNull final String indirizzoEmailDestinatario, 
-			@NotNull final String corpoEmailinHtml) {
+			@NotNull final String indirizzoEmailDestinatario,
+			@NotNull final String nomeTemplateHtml) {
 		try {
-			final SendMessagesRequest richiestaInvioEmail = this.pinpoint.creaRichiestaInvioEmail(oggetto, indirizzoEmailDestinatario, corpoEmailinHtml);
+			GetEmailTemplateResponse response= this.pinpoint.getClient().getEmailTemplate(GetEmailTemplateRequest.builder().templateName(nomeTemplateHtml).build());
+			String html = response.emailTemplateResponse().htmlPart();
+			final SendMessagesRequest richiestaInvioEmail = this.pinpoint.creaRichiestaInvioEmail(oggetto, indirizzoEmailDestinatario, html);
 			final SendMessagesResponse  rispostaDaRichiestaInvioEmail = this.pinpoint.getClient().sendMessages(richiestaInvioEmail);
 			log.info("sendMessagesResponse = {}", rispostaDaRichiestaInvioEmail);
 			return rispostaDaRichiestaInvioEmail;

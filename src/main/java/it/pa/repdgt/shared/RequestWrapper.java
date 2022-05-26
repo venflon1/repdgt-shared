@@ -95,9 +95,9 @@ public class RequestWrapper extends HttpServletRequestWrapper {
 				}
 			 */
 			//JWT esempio
-//			String jwt="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9."
-//					+ "eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE2NTM0ODczOTgsImV4cCI6MTY4NTAyMzM5OCwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQiLCJFbWFpbCI6Impyb2NrZXRAZXhhbXBsZS5jb20iLCJSb2xlIjpbIk1hbmFnZXIiLCJQcm9qZWN0IEFkbWluaXN0cmF0b3IiXX0."
-//					+ "AXZ8TntEPAjbdzHrPCp7UKrems7bX1pxj7g7DNOvni4";
+			jwt="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9."
+					+ "eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE2NTM0ODczOTgsImV4cCI6MTY4NTAyMzM5OCwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQiLCJFbWFpbCI6Impyb2NrZXRAZXhhbXBsZS5jb20iLCJSb2xlIjpbIk1hbmFnZXIiLCJQcm9qZWN0IEFkbWluaXN0cmF0b3IiXX0."
+					+ "AXZ8TntEPAjbdzHrPCp7UKrems7bX1pxj7g7DNOvni4";
 			//split JWT into 3 parts with . delimiter (part 1 = HEADER, part 2 = PAYLOAD, part 3 = SIGNATURE (Algorith (header + payload), secretKey)
 			String[] parts = jwt.split("\\.");
 			//String header = decode(parts[0]);

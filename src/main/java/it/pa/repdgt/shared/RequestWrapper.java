@@ -5,18 +5,12 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Optional;
 
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.ReadListener;
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -45,8 +39,8 @@ public class RequestWrapper extends HttpServletRequestWrapper {
             httpServletRequest.getParameterNames();
             
             Map<String, String> headers = this.getRequestHeaders(httpServletRequest);
-             String authToken = headers.get(AUTH_TOKEN_HEADER);
-             String codiceRuolo = headers.get(USER_ROLE_HEADER);
+            Optional<String> authToken = Optional.ofNullable(headers.get(AUTH_TOKEN_HEADER));
+            Optional<String> codiceRuolo = Optional.ofNullable(headers.get(USER_ROLE_HEADER));
 
             final String inputCorpoRichiesta = this.getCorpoRichiesta(httpServletRequest);
             if(inputCorpoRichiesta != null  && !inputCorpoRichiesta.trim().isEmpty()) {
@@ -73,7 +67,7 @@ public class RequestWrapper extends HttpServletRequestWrapper {
 			return stringBuilder.toString();
 		}
         
-    	public String getCorpoRichiestaArricchitaConDatiContesto(final String corpoRichiesta, String jwt, String codiceRuolo) throws JsonProcessingException, JsonMappingException {
+    	public String getCorpoRichiestaArricchitaConDatiContesto(final String corpoRichiesta, Optional<String> jwt, Optional<String> codiceRuolo) throws JsonProcessingException, JsonMappingException {
 			final JsonNode jsonNode = objectMapper.readTree(corpoRichiesta);
 			final ObjectNode objectNode = (ObjectNode) jsonNode;
 			
@@ -95,19 +89,23 @@ public class RequestWrapper extends HttpServletRequestWrapper {
 				}
 			 */
 			//JWT esempio
-			jwt="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9."
-					+ "eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE2NTM0ODczOTgsImV4cCI6MTY4NTAyMzM5OCwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQiLCJFbWFpbCI6Impyb2NrZXRAZXhhbXBsZS5jb20iLCJSb2xlIjpbIk1hbmFnZXIiLCJQcm9qZWN0IEFkbWluaXN0cmF0b3IiXX0."
-					+ "AXZ8TntEPAjbdzHrPCp7UKrems7bX1pxj7g7DNOvni4";
+//			jwt="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9."
+//					+ "eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE2NTM0ODczOTgsImV4cCI6MTY4NTAyMzM5OCwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoianJvY2tldEBleGFtcGxlLmNvbSIsIkdpdmVuTmFtZSI6IkpvaG5ueSIsIlN1cm5hbWUiOiJSb2NrZXQiLCJFbWFpbCI6Impyb2NrZXRAZXhhbXBsZS5jb20iLCJSb2xlIjpbIk1hbmFnZXIiLCJQcm9qZWN0IEFkbWluaXN0cmF0b3IiXX0."
+//					+ "AXZ8TntEPAjbdzHrPCp7UKrems7bX1pxj7g7DNOvni4";
 			//split JWT into 3 parts with . delimiter (part 1 = HEADER, part 2 = PAYLOAD, part 3 = SIGNATURE (Algorith (header + payload), secretKey)
-			String[] parts = jwt.split("\\.");
-			//String header = decode(parts[0]);
-			String payload = decode(parts[1]); //TODO: mappare da stringa a oggetto il payload
-			//String signature = decode(parts[2]);
+			if(jwt.isPresent()) {
+				//String header = decode(parts[0]);
+				String[] parts = jwt.get().split("\\.");
+				String jwtPayload = decode(parts[1]); //TODO: mappare da stringa a oggetto il payload
+			}
+				
 //			System.out.println("JWT DECODIFICATO: " + payload);
+			//String signature = decode(parts[2]);
 			//////////////////////////////////////////////////////////////////
-			
-//			objectNode.put(CODICE_FISCALE, payload.getCodiceFiscale);	// setting valore con decodifica auth_token 
-//			objectNode.put(CODICE_RUOLO, codiceRuolo);
+//			objectNode.put(CODICE_FISCALE, jwtPayload.getCodiceFiscale);	// setting valore con decodifica auth_token 
+			if(codiceRuolo.isPresent()) {
+				//	objectNode.put(CODICE_RUOLO, codiceRuolo);
+			}
 		
 			return jsonNode.toString();
 		}

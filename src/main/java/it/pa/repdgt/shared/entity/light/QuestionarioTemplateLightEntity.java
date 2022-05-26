@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -28,7 +26,4 @@ public class QuestionarioTemplateLightEntity implements Serializable {
 
 	@Column(name = "STATO", nullable = false)
 	private String stato;
-	
-	@Column(name = "TIPOLOGIA_QUESTIONARIO")
-	private String tipologiaQuestionario;
 }

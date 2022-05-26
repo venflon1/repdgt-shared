@@ -63,8 +63,8 @@ public class ProgettoEntity implements Serializable {
 	private String stato;
 
 	@Temporal(value = TemporalType.TIMESTAMP)
-	@Column(name = "DATA_ATTIVABILITA")
-	private Date dataAttivabilita;
+	@Column(name = "DATA_ORA_PROGETTO_ATTIVABILE")
+	private Date dataOraProgettoAttivabile;
 	
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "DATA_ORA_CREAZIONE")

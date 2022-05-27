@@ -18,7 +18,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "ENTE_SEDE_PROGETTO")
+@Table(name = "ente_sede_progetto")
 @Setter
 @Getter
 public class EnteSedeProgetto implements Serializable {

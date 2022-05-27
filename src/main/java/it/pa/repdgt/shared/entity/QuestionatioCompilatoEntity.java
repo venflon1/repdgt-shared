@@ -1,6 +1,7 @@
 package it.pa.repdgt.shared.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,12 +11,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "QUESTIONARIO_COMPILATO")
+@Table(name = "questionario_compilato")
 @Setter
 @Getter
 public class QuestionatioCompilatoEntity implements Serializable { 
@@ -46,4 +49,12 @@ public class QuestionatioCompilatoEntity implements Serializable {
 	
 	@Column(name = "PROGETTO_ID")
 	private Long idProgetto;
+	
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name = "DATA_ORA_CREAZIONE")
+	private Date dataOraCreazione;
+
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name = "DATA_ORA_AGGIORNAMENTO")
+	private Date dataOraAggiornamento;
 }

@@ -84,58 +84,130 @@ public class ProgrammaEntity implements Serializable {
 	private Date dataOraAggiornamento;
 	
 	//Numero Target Punti di Facilitazione
-	private Integer nPuntiFacilitazioneTarget1;
-	private Integer nPuntiFacilitazioneTarget2;
-	private Integer nPuntiFacilitazioneTarget3;
-	private Integer nPuntiFacilitazioneTarget4;
-	private Integer nPuntiFacilitazioneTarget5;
-	
-	//Date Target Punti di Facilitazione
-	private Date nPuntiFacilitazioneDataTarget1;
-	private Date nPuntiFacilitazioneDataTarget2;
-	private Date nPuntiFacilitazioneDataTarget3;
-	private Date nPuntiFacilitazioneDataTarget4;
-	private Date nPuntiFacilitazioneDataTarget5;
-	
-	//Numero Target Utenti Unici
-	private Integer nUtentiUniciTarget1;
-	private Integer nUtentiUniciTarget2;
-	private Integer nUtentiUniciTarget3;
-	private Integer nUtentiUniciTarget4;
-	private Integer nUtentiUniciTarget5;
-	
-	//Date Target Utenti Unici
-	private Date nUtentiUniciDataTarget1;
-	private Date nUtentiUniciDataTarget2;
-	private Date nUtentiUniciDataTarget3;
-	private Date nUtentiUniciDataTarget4;
-	private Date nUtentiUniciDataTarget5;
-	
-	//Numero Target Servizi
-	private Integer nServiziTarget1;
-	private Integer nServiziTarget2;
-	private Integer nServiziTarget3;
-	private Integer nServiziTarget4;
-	private Integer nServiziTarget5;
-	
-	//Date Target Servizi
-	private Date nServiziDataTarget1;
-	private Date nServiziDataTarget2;
-	private Date nServiziDataTarget3;
-	private Date nServiziDataTarget4;
-	private Date nServiziDataTarget5;
-	
-	//Numero Target Facilitatori
-	private Integer nFacilitatoriTarget1;
-	private Integer nFacilitatoriTarget2;
-	private Integer nFacilitatoriTarget3;
-	private Integer nFacilitatoriTarget4;
-	private Integer nFacilitatoriTarget5;
-	
-	//Date Target Facilitatori
-	private Date nFacilitatoriDataTarget1;
-	private Date nFacilitatoriDataTarget2;
-	private Date nFacilitatoriDataTarget3;
-	private Date nFacilitatoriDataTarget4;
-	private Date nFacilitatoriDataTarget5;
+		@Column(name = "n_punti_facilitazione_target1")
+		private Integer nPuntiFacilitazioneTarget1;
+		
+		@Column(name = "n_punti_facilitazione_target2")
+		private Integer nPuntiFacilitazioneTarget2;
+		
+		@Column(name = "n_punti_facilitazione_target3")
+		private Integer nPuntiFacilitazioneTarget3;
+		
+		@Column(name = "n_punti_facilitazione_target4")
+		private Integer nPuntiFacilitazioneTarget4;
+		
+		@Column(name = "n_punti_facilitazione_target5")
+		private Integer nPuntiFacilitazioneTarget5;
+		
+		//Date Target Punti di Facilitazione
+		@Column(name = "n_punti_facilitazione_data_target1")
+		private Date nPuntiFacilitazioneDataTarget1;
+		
+		@Column(name = "n_punti_facilitazione_data_target2")
+		private Date nPuntiFacilitazioneDataTarget2;
+		
+		@Column(name = "n_punti_facilitazione_data_target3")
+		private Date nPuntiFacilitazioneDataTarget3;
+		
+		@Column(name = "n_punti_facilitazione_data_target4")
+		private Date nPuntiFacilitazioneDataTarget4;
+		
+		@Column(name = "n_punti_facilitazione_data_target5")
+		private Date nPuntiFacilitazioneDataTarget5;
+		
+		//Numero Target Utenti Unici
+		@Column(name = "n_utenti_unici_target1")
+		private Integer nUtentiUniciTarget1;
+		
+		@Column(name = "n_utenti_unici_target2")
+		private Integer nUtentiUniciTarget2;
+		
+		@Column(name = "n_utenti_unici_target3")
+		private Integer nUtentiUniciTarget3;
+		
+		@Column(name = "n_utenti_unici_target4")
+		private Integer nUtentiUniciTarget4;
+		
+		@Column(name = "n_utenti_unici_target5")
+		private Integer nUtentiUniciTarget5;
+		
+		//Date Target Utenti Unici
+		@Column(name = "n_utenti_unici_data_target1")
+		private Date nUtentiUniciDataTarget1;
+		
+		@Column(name = "n_utenti_unici_data_target2")
+		private Date nUtentiUniciDataTarget2;
+		
+		@Column(name = "n_utenti_unici_data_target3")
+		private Date nUtentiUniciDataTarget3;
+		
+		@Column(name = "n_utenti_unici_data_target4")
+		private Date nUtentiUniciDataTarget4;
+		
+		@Column(name = "n_utenti_unici_data_target5")
+		private Date nUtentiUniciDataTarget5;
+		
+		//Numero Target Servizi
+		@Column(name = "n_servizi_target1")
+		private Integer nServiziTarget1;
+		
+		@Column(name = "n_servizi_target2")
+		private Integer nServiziTarget2;
+		
+		@Column(name = "n_servizi_target3")
+		private Integer nServiziTarget3;
+		
+		@Column(name = "n_servizi_target4")
+		private Integer nServiziTarget4;
+		
+		@Column(name = "n_servizi_target5")
+		private Integer nServiziTarget5;
+		
+		//Date Target Servizi
+		@Column(name = "n_servizi_data_target1")
+		private Date nServiziDataTarget1;
+		
+		@Column(name = "n_servizi_data_target2")
+		private Date nServiziDataTarget2;
+		
+		@Column(name = "n_servizi_data_target3")
+		private Date nServiziDataTarget3;
+		
+		@Column(name = "n_servizi_data_target4")
+		private Date nServiziDataTarget4;
+		
+		@Column(name = "n_servizi_data_target5")
+		private Date nServiziDataTarget5;
+		
+		//Numero Target Facilitatori
+		@Column(name = "n_facilitatori_target1")
+		private Integer nFacilitatoriTarget1;
+		
+		@Column(name = "n_facilitatori_target2")
+		private Integer nFacilitatoriTarget2;
+		
+		@Column(name = "n_facilitatori_target3")
+		private Integer nFacilitatoriTarget3;
+		
+		@Column(name = "n_facilitatori_target4")
+		private Integer nFacilitatoriTarget4;
+		
+		@Column(name = "n_facilitatori_target5")
+		private Integer nFacilitatoriTarget5;
+		
+		//Date Target Facilitatori
+		@Column(name = "n_facilitatori_data_target1")
+		private Date nFacilitatoriDataTarget1;
+		
+		@Column(name = "n_facilitatori_data_target2")
+		private Date nFacilitatoriDataTarget2;
+		
+		@Column(name = "n_facilitatori_data_target3")
+		private Date nFacilitatoriDataTarget3;
+		
+		@Column(name = "n_facilitatori_data_target4")
+		private Date nFacilitatoriDataTarget4;
+		
+		@Column(name = "n_facilitatori_data_target5")
+		private Date nFacilitatoriDataTarget5;
 }

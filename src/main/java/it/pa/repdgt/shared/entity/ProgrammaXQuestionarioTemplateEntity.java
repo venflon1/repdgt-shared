@@ -24,6 +24,9 @@ public class ProgrammaXQuestionarioTemplateEntity implements Serializable {
 	@EmbeddedId
 	private ProgrammaXQuestionarioTemplateKey programmaXQuestionarioTemplateKey;
 	
+	@Column(name = "STATO")
+	private String stato;
+	
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "DATA_ORA_CREAZIONE")
 	private Date dataOraCreazione;

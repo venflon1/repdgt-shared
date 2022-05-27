@@ -34,6 +34,9 @@ public class QuestionarioTemplateEntity implements Serializable {
 	
 	@Column(name = "NOME", nullable = false)
 	private String nome;
+	
+	@Column(name = "DESCRIZIONE", nullable = false)
+	private String descrizione;
 
 	@Column(name = "STATO", nullable = false)
 	private String stato;

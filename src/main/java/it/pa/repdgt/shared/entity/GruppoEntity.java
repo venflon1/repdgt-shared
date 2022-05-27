@@ -20,7 +20,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "GRUPPO")
+@Table(name = "gruppo")
 @Setter
 @Getter
 public class GruppoEntity implements Serializable {

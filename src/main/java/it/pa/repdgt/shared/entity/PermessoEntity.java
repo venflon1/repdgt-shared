@@ -16,7 +16,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "PERMESSO")
+@Table(name = "permesso")
 @Setter
 @Getter
 public class PermessoEntity implements Serializable {

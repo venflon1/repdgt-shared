@@ -15,7 +15,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "PROGRAMMA_X_QUESTIONARIO_TEMPLATE")
+@Table(name = "programma_x_questionario_template")
 @Setter
 @Getter
 public class ProgrammaXQuestionarioTemplateEntity implements Serializable { 

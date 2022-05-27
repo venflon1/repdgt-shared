@@ -23,7 +23,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "UTENTE")
+@Table(name = "utente")
 @Setter
 @Getter
 public class UtenteEntity implements Serializable {

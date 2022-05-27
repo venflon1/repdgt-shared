@@ -18,7 +18,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "QUESTIONARIO_COMPILATO")
+@Table(name = "questionario_compilato")
 @Setter
 @Getter
 public class QuestionatioCompilatoEntity implements Serializable { 

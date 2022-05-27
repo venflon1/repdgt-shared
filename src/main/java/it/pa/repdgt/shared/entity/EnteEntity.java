@@ -19,7 +19,7 @@ import lombok.Setter;
 @Entity
 @Setter
 @Getter
-@Table(name = "ENTE")
+@Table(name = "ente")
 public class EnteEntity implements Serializable {
 	private static final long serialVersionUID = -6310179790779394657L;
 

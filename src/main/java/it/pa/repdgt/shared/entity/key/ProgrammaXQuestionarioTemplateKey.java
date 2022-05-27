@@ -6,11 +6,13 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Embeddable
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
 public class ProgrammaXQuestionarioTemplateKey implements Serializable {
 	private static final long serialVersionUID = 7418367635109954696L;
 

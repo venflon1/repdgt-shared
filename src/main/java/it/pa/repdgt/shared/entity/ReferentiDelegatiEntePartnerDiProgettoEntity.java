@@ -20,7 +20,7 @@ import lombok.Setter;
  *  di un ente gestore di programma
  */
 @Entity
-@Table(name = "REFERENTE_DELEGATI_PARTNER")
+@Table(name = "referente_delegati_partner")
 @NoArgsConstructor
 @Getter
 @Setter

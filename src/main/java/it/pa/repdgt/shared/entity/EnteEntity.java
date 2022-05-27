@@ -38,7 +38,7 @@ public class EnteEntity implements Serializable {
 	private String nomeBreve;
 
 	@Column(name = "TIPOLOGIA", nullable = true)
-	private String tiplogia;
+	private String tipologia;
 	
 	@Column(name = "SEDE_LEGALE", nullable = true)
 	private String sedeLegale;

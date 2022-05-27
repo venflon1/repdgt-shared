@@ -10,13 +10,17 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table(name = "QUESTIONARIO_TEMPLATE")
 @Setter
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class QuestionarioTemplateEntity implements Serializable { 
 	private static final long serialVersionUID = 1881729313244042919L;
 
@@ -28,8 +32,11 @@ public class QuestionarioTemplateEntity implements Serializable {
 	@Column(name = "ID")
 	private String id;
 	
-	@Column(name = "NOME", nullable = false, unique = true)
+	@Column(name = "NOME", nullable = false)
 	private String nome;
+	
+	@Column(name = "DESCRIZIONE", nullable = false)
+	private String descrizione;
 
 	@Column(name = "STATO", nullable = false)
 	private String stato;

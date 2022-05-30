@@ -23,7 +23,7 @@ public class CittadinoEntity implements Serializable {
 	
 	@Id
 	@Column(name = "CODICE_FISCALE")
-	private String tipologiaQuestionario;
+	private String codiceFiscale;
 	
 	@Column(name = "NOME", nullable = false)
 	private String nome;

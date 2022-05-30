@@ -21,7 +21,7 @@ import lombok.Setter;
 @Table(name = "questionario_compilato")
 @Setter
 @Getter
-public class QuestionatioCompilatoEntity implements Serializable { 
+public class QuestionarioCompilatoEntity implements Serializable { 
 	private static final long serialVersionUID = 4720569058596366321L;
 
 	// corrisponde all'id della collection 'questionario-template-istanza'

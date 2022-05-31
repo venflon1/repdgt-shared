@@ -12,6 +12,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import it.pa.repdgt.shared.entity.key.EnteSedeProgettoFacilitatoreKey;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -36,8 +37,7 @@ public class ServizioEntity implements Serializable {
 	@Column(name = "ID_QUESTIONARIO_TEMPLATE_SNAPSHOT")
 	private String idQuestionarioTemplateSnapshot;
 	
-	@Column(name = "ID_ENTE_SEDE_PROGETTO_FACILIATATORE")
-	private String idEnteSedeProgettoFacilitatore;
+	private EnteSedeProgettoFacilitatoreKey idEnteSedeProgettoFacilitatore;
 	
 	@Column(name = "STATO")
 	private String stato;

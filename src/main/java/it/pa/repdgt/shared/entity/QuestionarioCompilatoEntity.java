@@ -21,7 +21,7 @@ import lombok.Setter;
 @Table(name = "questionario_compilato")
 @Setter
 @Getter
-public class QuestionatioCompilatoEntity implements Serializable { 
+public class QuestionarioCompilatoEntity implements Serializable { 
 	private static final long serialVersionUID = 4720569058596366321L;
 
 	// corrisponde all'id della collection 'questionario-template-istanza'
@@ -38,8 +38,9 @@ public class QuestionatioCompilatoEntity implements Serializable {
 	@JoinColumn(name = "CODICE_FISCALE_CITTADINO", referencedColumnName = "CODICE_FISCALE")
 	private CittadinoEntity cittadino;
 	
+	// codice fiscale facilitatore
 	@Column(name = "FACILITATORE_ID")
-	private Long idFacilitatore;
+	private String idFacilitatore;
 
 	@Column(name = "SEDE_ID")
 	private Long idSede;
@@ -49,6 +50,9 @@ public class QuestionatioCompilatoEntity implements Serializable {
 	
 	@Column(name = "PROGETTO_ID")
 	private Long idProgetto;
+	
+	@Column(name = "STATO")
+	private String stato;
 	
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "DATA_ORA_CREAZIONE")

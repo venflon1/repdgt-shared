@@ -50,6 +50,9 @@ public class CittadinoEntity implements Serializable {
 	@Email
 	private String email;
 	
+	@Column(name = "PREFISSO", nullable = false)
+	private String prefisso;
+	
 	@Column(name = "TELEFONO", nullable = false)
 	private String telefono;
 	

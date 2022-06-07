@@ -60,6 +60,9 @@ public class ProgrammaEntity implements Serializable {
 	@Enumerated(value = EnumType.STRING)
 	private PolicyEnum policy;
 	
+	@Column(name = "BANDO")
+	private String bando;
+	
 	@Column(name = "DATA_INIZIO_PROGRAMMA")
 	private Date dataInizioProgramma;
 	

@@ -35,7 +35,7 @@ public class QuestionarioCompilatoEntity implements Serializable {
 	private QuestionarioTemplateEntity questionarioTemplate;
 
 	@OneToOne(optional = false)
-	@JoinColumn(name = "CODICE_FISCALE_CITTADINO", referencedColumnName = "CODICE_FISCALE")
+	@JoinColumn(name = "ID_CITTADINO", referencedColumnName = "ID")
 	private CittadinoEntity cittadino;
 	
 	@Column(name = "FACILITATORE_ID")

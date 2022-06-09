@@ -61,6 +61,9 @@ public class ProgettoEntity implements Serializable {
 
 	@Column(name = "STATO")
 	private String stato;
+	
+	@Column(name = "CUP")
+	private Integer cup;
 
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "DATA_ORA_PROGETTO_ATTIVABILE")
@@ -81,6 +84,14 @@ public class ProgettoEntity implements Serializable {
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "DATA_ORA_TERMINAZIONE")
 	private Date dataOraTerminazione;
+	
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name = "DATA_INIZIO_PROGETTO")
+	private Date dataInizioProgetto;
+	
+	@Temporal(value = TemporalType.TIMESTAMP)
+	@Column(name = "DATA_FINE_PROGETTO")
+	private Date dataFineProgetto;
 	
 	//Numero Target Punti di Facilitazione
 	@Column(name = "n_punti_facilitazione_target1")

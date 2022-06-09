@@ -86,11 +86,11 @@ public class ProgettoEntity implements Serializable {
 	private Date dataOraTerminazione;
 	
 	@Temporal(value = TemporalType.TIMESTAMP)
-	@Column(name = "DATA_INIZIO_PROGETTO")
+	@Column(name = "DATA_ORA_INIZIO")
 	private Date dataInizioProgetto;
 	
 	@Temporal(value = TemporalType.TIMESTAMP)
-	@Column(name = "DATA_FINE_PROGETTO")
+	@Column(name = "DATA_ORA_FINE")
 	private Date dataFineProgetto;
 	
 	//Numero Target Punti di Facilitazione

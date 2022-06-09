@@ -63,6 +63,9 @@ public class ProgrammaEntity implements Serializable {
 	@Column(name = "BANDO")
 	private String bando;
 	
+	@Column(name = "CUP")
+	private Integer cup;
+	
 	@Column(name = "DATA_INIZIO_PROGRAMMA")
 	private Date dataInizioProgramma;
 	

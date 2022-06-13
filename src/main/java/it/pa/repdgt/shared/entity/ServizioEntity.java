@@ -11,13 +11,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
 
 import it.pa.repdgt.shared.entity.key.EnteSedeProgettoFacilitatoreKey;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "servizio")
+@Table(name = "servizio",
+	   uniqueConstraints = {  @UniqueConstraint( columnNames = { "ID", "ID_PROGETTO" } )
+})
 @Setter
 @Getter
 public class ServizioEntity implements Serializable {
@@ -36,6 +39,9 @@ public class ServizioEntity implements Serializable {
 	
 	@Column(name = "ID_QUESTIONARIO_TEMPLATE_SNAPSHOT")
 	private String idQuestionarioTemplateSnapshot;
+	
+	@Column(name = "TIPOLOGIA_SERVIZIO")
+	private String tipologiaServizio;
 	
 	private EnteSedeProgettoFacilitatoreKey idEnteSedeProgettoFacilitatore;
 	

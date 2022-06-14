@@ -11,14 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.UniqueConstraint;
 
 import it.pa.repdgt.shared.entity.key.EnteSedeProgettoFacilitatoreKey;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table
+@Table(name = "servizio")
 @Setter
 @Getter
 public class ServizioEntity implements Serializable {

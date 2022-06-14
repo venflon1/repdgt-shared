@@ -18,9 +18,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "servizio",
-	   uniqueConstraints = {  @UniqueConstraint( columnNames = { "ID", "ID_PROGETTO" } )
-})
+@Table
 @Setter
 @Getter
 public class ServizioEntity implements Serializable {

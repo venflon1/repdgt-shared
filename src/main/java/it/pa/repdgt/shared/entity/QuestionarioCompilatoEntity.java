@@ -26,7 +26,6 @@ public class QuestionarioCompilatoEntity implements Serializable {
 
 	// corrisponde all'id della collection 'questionario-template-istanza'
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private String id;
 	

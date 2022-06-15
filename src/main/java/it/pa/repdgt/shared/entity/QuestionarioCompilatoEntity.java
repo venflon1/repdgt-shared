@@ -28,18 +28,17 @@ public class QuestionarioCompilatoEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
-	private Long id;
+	private String id;
 	
-	@OneToOne(optional = false)
-	@JoinColumn(name = "QUESTIONARIO_TEMPLATE_ID", referencedColumnName = "ID")
-	private QuestionarioTemplateEntity questionarioTemplate;
+	@Column(name = "QUESTIONARIO_TEMPLATE_ID")
+	private String idQuestionarioTemplate;
 
 	@OneToOne(optional = false)
 	@JoinColumn(name = "ID_CITTADINO", referencedColumnName = "ID")
 	private CittadinoEntity cittadino;
 	
 	@Column(name = "FACILITATORE_ID")
-	private Long idFacilitatore;
+	private String idFacilitatore;
 
 	@Column(name = "SEDE_ID")
 	private Long idSede;

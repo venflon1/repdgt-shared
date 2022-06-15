@@ -28,7 +28,7 @@ public class CittadinoEntity implements Serializable {
 	@Column(name = "ID")
 	private Long id;
 	
-	@Column(name = "CODICE_FISCALE", nullable = true, unique = true)
+	@Column(name = "CODICE_FISCALE", nullable = true)
 	private String codiceFiscale;
 	
 	@Column(name = "NOME", nullable = false)

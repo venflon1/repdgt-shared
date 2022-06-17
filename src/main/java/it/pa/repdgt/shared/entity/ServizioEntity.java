@@ -39,6 +39,9 @@ public class ServizioEntity implements Serializable {
 	
 	@Column(name = "TIPOLOGIA_SERVIZIO")
 	private String tipologiaServizio;
+
+	@Column(name = "DATA_SERVIZIO")
+	private Date dataServizio;
 	
 	private EnteSedeProgettoFacilitatoreKey idEnteSedeProgettoFacilitatore;
 	

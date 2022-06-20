@@ -17,6 +17,8 @@ public interface DomandeStrutturaQ1AndQ2Constants {
 	public final String ID_DOMANDA_PREFISSO = "14";
 	public final String ID_DOMANDA_NUMERO_CELLULARE = "15";
 	public final String ID_DOMANDA_TELEFONO = "16";
+	public final String ID_DOMANDA_TIPO_CONSENSO = "17";
+	public final String ID_DOMANDA_DATA_CONSENSO = "18";
 	
 	public final String ID_DOMANDA_PRIMA_VOLTA = "19";
 	public final String ID_DOMANDA_TIPO_PRIMO_SERVIZIO = "20";
@@ -26,6 +28,8 @@ public interface DomandeStrutturaQ1AndQ2Constants {
 			+ " \"id\": \"Q1\", "
 			+ " \"title\": \"Sezione Q1\", "
 			+ " \"properties\": ["
+					+ " \"{'%s': ['%s']}\", "
+					+ " \"{'%s': ['%s']}\", "
 					+ " \"{'%s': ['%s']}\", "
 					+ " \"{'%s': ['%s']}\", "
 					+ " \"{'%s': ['%s']}\", "

@@ -40,6 +40,7 @@ public class ServizioEntity implements Serializable {
 	@Column(name = "TIPOLOGIA_SERVIZIO")
 	private String tipologiaServizio;
 
+	@Temporal(value = TemporalType.DATE)
 	@Column(name = "DATA_SERVIZIO")
 	private Date dataServizio;
 	

@@ -22,7 +22,7 @@ import lombok.Setter;
 public class QuestionarioCompilatoEntity implements Serializable { 
 	private static final long serialVersionUID = 4720569058596366321L;
 
-	// corrisponde all'id della collection 'questionario-template-istanza'
+	// corrisponde all'id della collection 'questionarioCompilato'
 	@Id
 	@Column(name = "ID")
 	private String id;

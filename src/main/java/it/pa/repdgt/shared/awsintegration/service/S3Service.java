@@ -17,7 +17,6 @@ import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
-import software.amazon.awssdk.services.s3.model.PutObjectResponse;
 
 @Service
 @Scope("singleton")
@@ -47,17 +46,17 @@ public class S3Service {
 			.build();
 		
 		if(!fileToUpload.exists()) {
-			log.error("Il file specificato: '%s' non e' stato trovato. Verifica che il path e il nome del file siano corretti.");
+			log.error("Il file con nome: '{}' non e' stato trovato. Verifica che il path e il nome del file siano corretti.", fileToUploadName);
 			String errorMessage =  String.format("Il seguente file '%s' non esiste.", fileToUploadName);
 			throw new FileNotFoundException(errorMessage);
 		}
 		
 		try {
-			log.info("Uploading file {} su AmazonS3...", fileToUploadName);
+			log.info("Uploading file con nome '{}' su AmazonS3...", fileToUploadName);
 			this.getClient().putObject(putObjectRequest, fileToUpload.toPath());
 			log.info("Uploading file su AmazonS3 riuscito.");
 		} catch (Exception ex) {
-			log.error("Errore upload del file su AmazonS3 per il file '%s'", fileToUploadName);
+			log.error("Errore upload del file su AmazonS3 per il file con nome '{}'. ex={}", fileToUploadName, ex);
 		}
 	}
 }

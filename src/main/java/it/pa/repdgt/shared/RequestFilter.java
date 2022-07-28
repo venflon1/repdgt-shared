@@ -1,6 +1,7 @@
 package it.pa.repdgt.shared;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -15,20 +16,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import it.pa.repdgt.shared.exception.RuoloUtenteException;
-import it.pa.repdgt.shared.repository.UtenteXRuoloRepositoryPerFiltro;
+import it.pa.repdgt.shared.service.PermessoApiService;
+import it.pa.repdgt.shared.service.PermessoService;
 import it.pa.repdgt.shared.service.RuoloService;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
 public class RequestFilter implements Filter {
-
-	@Autowired
-	private UtenteXRuoloRepositoryPerFiltro utenteXRuoloRepository;
 	@Autowired
 	@Qualifier(value = "ruoloServiceFiltro")
 	private RuoloService ruoloService;
+	@Autowired
+	@Qualifier(value = "permessoServiceFiltro")
+	private PermessoService permessoService;
+	@Autowired
+	private PermessoApiService permessiApiService;
+	
 	
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -38,16 +42,14 @@ public class RequestFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
+		log.debug("Filter - doFilter - START");
 		RequestWrapper wrappedRequest = null;
 		try {
 			wrappedRequest = new RequestWrapper((HttpServletRequest) request);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception ex) {
+			log.error("{}", ex);
+			throw new RuntimeException(ex.getMessage());
 		}
-		log.info("dcdlckjdlk {}", ((HttpServletRequest) request).getServletPath());
-		log.info("dcdlckjdlk {}", ((HttpServletRequest) request).getMethod());
-		log.debug("Filter - doFilter");
 		
 		
 		/*
@@ -64,7 +66,7 @@ public class RequestFilter implements Filter {
 			and uxr.ruolo_codice = 'REPP';
 			
 			
-			
+			[.....]
 			select pa.codice_permesso
 			from permessi_api pa
 			where http_method = 'GET'
@@ -76,22 +78,37 @@ public class RequestFilter implements Filter {
 		 * 
 		 * 
 		 */
-		final String codiceRuoloUtenteLoggato = wrappedRequest.getCodiceRuolo();
+		
+		final String codiceFiscaleUtenteLoggato = wrappedRequest.getCodiceFiscale();
+		final String codiceRuoloUtenteLoggato   = wrappedRequest.getCodiceRuolo();
 		boolean hasRuoloUtente = this.ruoloService
 				.getRuoliByCodiceFiscaleUtente(wrappedRequest.getCodiceFiscale())
 				.stream()
 				.anyMatch(codiceRuolo -> codiceRuolo.equalsIgnoreCase(codiceRuoloUtenteLoggato));
 		
+		HttpServletResponse responseHttp = ((HttpServletResponse) response);
 		if(!hasRuoloUtente) {
-			throw new RuoloUtenteException("ERRORE: ruolo non definito per l'utente");
-		}
-		
-		
-		if(!wrappedRequest.getCodiceFiscale().equals("UTENTE1")) {
-			HttpServletResponse responseHttp = ((HttpServletResponse) response);
-			responseHttp.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Utente Non Autorizzato ad effettuare chiamata");
-		}else {
-			chain.doFilter(wrappedRequest, response);
+			responseHttp.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Utente Non Autorizzato");
+		} else {
+			String metodoHttp = ((HttpServletRequest) request).getMethod();
+			String endpoint = ((HttpServletRequest) request).getServletPath();
+			List<String> codiciPermessoPerApi = this.permessiApiService.getCodiciPermessiApiByMetodoHttpAndPath(metodoHttp, endpoint);
+			List<String> codiciPermessoUtenteLoggato = this.permessoService.getCodiciPermessoByUtenteLoggato(codiceFiscaleUtenteLoggato, codiceRuoloUtenteLoggato);
+
+			boolean isUtenteAbilitatoPerApi = false;
+			for(String codiciPermesso: codiciPermessoPerApi) {
+				if(codiciPermessoUtenteLoggato.contains(codiciPermesso)) {
+					isUtenteAbilitatoPerApi = true;
+					break;
+				}
+			}
+			
+			if(!isUtenteAbilitatoPerApi) {
+				responseHttp.sendError(HttpServletResponse.SC_UNAUTHORIZED, String.format("Utente Non Autorizzato per endpoint: %s %s", metodoHttp, endpoint));
+			}
+			else {
+				chain.doFilter(wrappedRequest, response);
+			}
 		}
 	}
 

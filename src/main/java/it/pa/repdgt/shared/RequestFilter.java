@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import it.pa.repdgt.shared.service.PermessoApiService;
@@ -23,6 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
+@Profile("dev")
 public class RequestFilter implements Filter {
 	@Autowired
 	@Qualifier(value = "ruoloServiceFiltro")

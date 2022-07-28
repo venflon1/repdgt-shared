@@ -24,8 +24,8 @@ public class RequestWrapper extends HttpServletRequestWrapper {
 	private static final int SIZE_BUFFER = 128;
         private static final String AUTH_TOKEN_HEADER = "authtoken";
         private static final String USER_ROLE_HEADER  = "userrole";
-        private static final String CODICE_RUOLO = "codiceRuolo";
-        private static final String CODICE_FISCALE = "cfUtente";
+        private static final String CODICE_RUOLO = "codiceRuoloUtenteLoggato";
+        private static final String CODICE_FISCALE = "cfUtenteLoggato";
                 
         private ObjectMapper objectMapper = new ObjectMapper();
 		private String body;

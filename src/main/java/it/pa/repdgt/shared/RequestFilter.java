@@ -12,13 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
+import it.pa.repdgt.shared.exception.RuoloUtenteException;
 import it.pa.repdgt.shared.repository.UtenteXRuoloRepositoryPerFiltro;
-import lombok.Getter;
-import lombok.Setter;
+import it.pa.repdgt.shared.service.RuoloService;
 import lombok.extern.slf4j.Slf4j;
 
 @Component
@@ -27,6 +26,9 @@ public class RequestFilter implements Filter {
 
 	@Autowired
 	private UtenteXRuoloRepositoryPerFiltro utenteXRuoloRepository;
+	@Autowired
+	@Qualifier(value = "ruoloServiceFiltro")
+	private RuoloService ruoloService;
 	
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -46,6 +48,8 @@ public class RequestFilter implements Filter {
 		log.info("dcdlckjdlk {}", ((HttpServletRequest) request).getServletPath());
 		log.info("dcdlckjdlk {}", ((HttpServletRequest) request).getMethod());
 		log.debug("Filter - doFilter");
+		
+		
 		/*
 		 * 
 		 * select p.codice
@@ -72,6 +76,17 @@ public class RequestFilter implements Filter {
 		 * 
 		 * 
 		 */
+		final String codiceRuoloUtenteLoggato = wrappedRequest.getCodiceRuolo();
+		boolean hasRuoloUtente = this.ruoloService
+				.getRuoliByCodiceFiscaleUtente(wrappedRequest.getCodiceFiscale())
+				.stream()
+				.anyMatch(codiceRuolo -> codiceRuolo.equalsIgnoreCase(codiceRuoloUtenteLoggato));
+		
+		if(!hasRuoloUtente) {
+			throw new RuoloUtenteException("ERRORE: ruolo non definito per l'utente");
+		}
+		
+		
 		if(!wrappedRequest.getCodiceFiscale().equals("UTENTE1")) {
 			HttpServletResponse responseHttp = ((HttpServletResponse) response);
 			responseHttp.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Utente Non Autorizzato ad effettuare chiamata");

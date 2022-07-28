@@ -45,25 +45,27 @@ public class RequestWrapper extends HttpServletRequestWrapper {
             /****** DECODE TOKEN ********/
             //se non esiste codiceRuolo e/o authToken API GATEWAY blocca la chiamata
             //split del JWT nelle sue 3 parti con il delimitatore '.' (part 1 = HEADER, part 2 = PAYLOAD, part 3 = SIGNATURE (Algorith (header + payload), secretKey)
-			String[] parts = authToken.get().split("\\.");
-			//recupero la parte jwt del payload e la decodifico da Base64 
-			String jwtPayload = decode(parts[1]);
-
-			JsonNode jsonNodeRoot = objectMapper.readTree(jwtPayload);
-			//recupero il codiceFiscale dal payload
-			JsonNode jsonCodiceFiscale = jsonNodeRoot.get("fiscalNumber");
-
-			this.codiceFiscale = jsonCodiceFiscale.asText();
-			this.codiceRuolo = codiceRuolo.get();
-			
-            /*se ci troviamo in caso di chiamata a API con HTTP METHOD <> GET 
-             * allora facciamo arricchimento body con codiceFiscale e codiceRuolo
-             * (metodo getCorpoRichiestaArricchitaConDatiContesto)
-			*/
-            final String inputCorpoRichiesta = this.getCorpoRichiesta(httpServletRequest);
-            if(inputCorpoRichiesta != null  && !inputCorpoRichiesta.trim().isEmpty()) {
-	            this.body = this.getCorpoRichiestaArricchitaConDatiContesto(inputCorpoRichiesta);
-            }
+			if(authToken.isPresent()) {
+	            String[] parts = authToken.get().split("\\.");
+				//recupero la parte jwt del payload e la decodifico da Base64 
+				String jwtPayload = decode(parts[1]);
+	
+				JsonNode jsonNodeRoot = objectMapper.readTree(jwtPayload);
+				//recupero il codiceFiscale dal payload
+				JsonNode jsonCodiceFiscale = jsonNodeRoot.get("fiscalNumber");
+	
+				this.codiceFiscale = jsonCodiceFiscale.asText();
+				this.codiceRuolo = codiceRuolo.get();
+				
+	            /*se ci troviamo in caso di chiamata a API con HTTP METHOD <> GET 
+	             * allora facciamo arricchimento body con codiceFiscale e codiceRuolo
+	             * (metodo getCorpoRichiestaArricchitaConDatiContesto)
+				*/
+	            final String inputCorpoRichiesta = this.getCorpoRichiesta(httpServletRequest);
+	            if(inputCorpoRichiesta != null  && !inputCorpoRichiesta.trim().isEmpty()) {
+		            this.body = this.getCorpoRichiestaArricchitaConDatiContesto(inputCorpoRichiesta);
+	            }
+			}
         }
 
         public String getCorpoRichiesta(final HttpServletRequest httpServletRequest) throws IOException {

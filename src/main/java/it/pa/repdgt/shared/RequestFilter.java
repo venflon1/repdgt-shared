@@ -47,27 +47,29 @@ public class RequestFilter implements Filter {
 			throws IOException, ServletException {
 		log.debug("Filter - doFilter - START");
 		RequestWrapper wrappedRequest = null;
+		HttpServletResponse responseHttp = ((HttpServletResponse) response);
 		try {
 			wrappedRequest = new RequestWrapper((HttpServletRequest) request);
 		} catch (Exception ex) {
 			log.error("{}", ex);
-			throw new RuntimeException(ex.getMessage());
+			responseHttp.sendError(HttpServletResponse.SC_UNAUTHORIZED, "FILTER ERROR");
+			return;
 		}
 
 		final String codiceFiscaleUtenteLoggato = wrappedRequest.getCodiceFiscale();
 		final String codiceRuoloUtenteLoggato   = wrappedRequest.getCodiceRuolo();
-		boolean hasRuoloUtente = this.ruoloService
-				.getRuoliByCodiceFiscaleUtente(wrappedRequest.getCodiceFiscale())
-				.stream()
-				.anyMatch(codiceRuolo -> codiceRuolo.equalsIgnoreCase(codiceRuoloUtenteLoggato));
 		
 		String metodoHttp = ((HttpServletRequest) request).getMethod();
 		String endpoint = ((HttpServletRequest) request).getServletPath();
-		HttpServletResponse responseHttp = ((HttpServletResponse) response);
 		
 		if(endpoint.contains(OPEN_DATA_BASE_URI)) {
 			chain.doFilter(wrappedRequest, response);
 		} else {
+			boolean hasRuoloUtente = this.ruoloService
+					.getRuoliByCodiceFiscaleUtente(wrappedRequest.getCodiceFiscale())
+					.stream()
+					.anyMatch(codiceRuolo -> codiceRuolo.equalsIgnoreCase(codiceRuoloUtenteLoggato));
+		
 			// verifico se l'utente loggato possiede il ruolo con cui si è profilato
 			if(!hasRuoloUtente) {
 				responseHttp.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Utente Non Autorizzato");

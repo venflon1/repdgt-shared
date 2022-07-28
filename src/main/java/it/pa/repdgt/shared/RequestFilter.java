@@ -74,7 +74,7 @@ public class RequestFilter implements Filter {
 		 */
 		if(!wrappedRequest.getCodiceFiscale().equals("UTENTE1")) {
 			HttpServletResponse responseHttp = ((HttpServletResponse) response);
-			responseHttp.sendError(HttpServletResponse.SC_UNAUTHORIZED, "culo");
+			responseHttp.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Utente Non Autorizzato ad effettuare chiamata");
 		}else {
 			chain.doFilter(wrappedRequest, response);
 		}

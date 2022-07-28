@@ -20,17 +20,12 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 public class RequestWrapper extends HttpServletRequestWrapper {
 	private static final int SIZE_BUFFER = 128;
-        private static final String AUTH_TOKEN_HEADER = "authToken";
-        private static final String USER_ROLE_HEADER  = "userRole";
+        private static final String AUTH_TOKEN_HEADER = "authtoken";
+        private static final String USER_ROLE_HEADER  = "userrole";
         private static final String CODICE_RUOLO = "codiceRuolo";
-        private static final String CODICE_FISCALE = "codiceFiscale";
+        private static final String CODICE_FISCALE = "cfUtente";
                 
         private ObjectMapper objectMapper = new ObjectMapper();
 		private String body;
@@ -47,43 +42,24 @@ public class RequestWrapper extends HttpServletRequestWrapper {
             Optional<String> authToken = Optional.ofNullable(headers.get(AUTH_TOKEN_HEADER));
             Optional<String> codiceRuolo = Optional.ofNullable(headers.get(USER_ROLE_HEADER));
             
-            /****** DECODIFICA TOKEN ********/
-            
-            /*prova decode payload jwt esempio con codiceFiscale ERRATO
-			 * {
-  					"codiceFiscale":"EEEEE"
-				}
-			 */
-			//JWT esempio
-            //authToken=Optional.of("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb2RpY2VGaXNjYWxlIjoiRUVFRUUifQ.q0tcbBXgpeeWYY9GAmIrFtGIuxtMQtSo_X1WyDUqZC4");
-            
-            /*prova decode payload jwt esempio con codiceFiscale CORRETTO
-			 * {
-				  "codiceFiscale":"UTENTE1"
-				}
-			 */
-			//JWT esempio
-            authToken=Optional.of("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb2RpY2VGaXNjYWxlIjoiVVRFTlRFMSJ9.dK1zPRmYFWCF9aGKCQedfj44O1sQeT7bPKsrZkuzP8A");
-			
-            //split JWT into 3 parts with . delimiter (part 1 = HEADER, part 2 = PAYLOAD, part 3 = SIGNATURE (Algorith (header + payload), secretKey)
+            /****** DECODE TOKEN ********/
+            //se non esiste codiceRuolo e/o authToken API GATEWAY blocca la chiamata
+            //split del JWT nelle sue 3 parti con il delimitatore '.' (part 1 = HEADER, part 2 = PAYLOAD, part 3 = SIGNATURE (Algorith (header + payload), secretKey)
 			String[] parts = authToken.get().split("\\.");
-			
-			SpidResult result = null;
-			//se non esiste codiceRuolo e/o authToken API GATEWAY blocca la chiamata
+			//recupero la parte jwt del payload e la decodifico da Base64 
 			String jwtPayload = decode(parts[1]);
-			
-			//mappo da stringa a oggetto il payload del jwt
-			ObjectMapper oM = new ObjectMapper();
-			result = oM.readValue(jwtPayload, SpidResult.class);
-			
-			log.info("JWT DECODIFICATO: " + jwtPayload);
-			this.codiceFiscale = result.getCodiceFiscale();
 
-			//this.codiceRuolo = codiceRuolo.get(); //TODO: da decommentare e commentare riga sotto
-			//setto codiceRuolo di esempio
-			this.codiceRuolo = "DTD";
+			JsonNode jsonNodeRoot = objectMapper.readTree(jwtPayload);
+			//recupero il codiceFiscale dal payload
+			JsonNode jsonCodiceFiscale = jsonNodeRoot.get("codiceFiscale");
+
+			this.codiceFiscale = jsonCodiceFiscale.asText();
+			this.codiceRuolo = codiceRuolo.get();
 			
-            //siamo in caso di chiamata a API con HTTP METHOD <> GET
+            /*se ci troviamo in caso di chiamata a API con HTTP METHOD <> GET 
+             * allora facciamo arricchimento body con codiceFiscale e codiceRuolo
+             * (metodo getCorpoRichiestaArricchitaConDatiContesto)
+			*/
             final String inputCorpoRichiesta = this.getCorpoRichiesta(httpServletRequest);
             if(inputCorpoRichiesta != null  && !inputCorpoRichiesta.trim().isEmpty()) {
 	            this.body = this.getCorpoRichiestaArricchitaConDatiContesto(inputCorpoRichiesta);
@@ -175,10 +151,4 @@ public class RequestWrapper extends HttpServletRequestWrapper {
         public String getCodiceRuolo() {
         	return this.codiceRuolo;
         }
-}
-
-@Setter
-@Getter
-class SpidResult{
-	private String codiceFiscale;
 }

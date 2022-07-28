@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import it.pa.repdgt.shared.repository.storico.UtenteXRuoloRepositoryProva;
+import it.pa.repdgt.shared.repository.UtenteXRuoloRepositoryPerFiltro;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 public class RequestFilter implements Filter {
 
 	@Autowired
-	private UtenteXRuoloRepositoryProva utenteXRuoloRepository;
+	private UtenteXRuoloRepositoryPerFiltro utenteXRuoloRepository;
 	
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {

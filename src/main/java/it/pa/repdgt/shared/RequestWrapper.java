@@ -51,7 +51,7 @@ public class RequestWrapper extends HttpServletRequestWrapper {
 
 			JsonNode jsonNodeRoot = objectMapper.readTree(jwtPayload);
 			//recupero il codiceFiscale dal payload
-			JsonNode jsonCodiceFiscale = jsonNodeRoot.get("codiceFiscale");
+			JsonNode jsonCodiceFiscale = jsonNodeRoot.get("fiscalNumber");
 
 			this.codiceFiscale = jsonCodiceFiscale.asText();
 			this.codiceRuolo = codiceRuolo.get();

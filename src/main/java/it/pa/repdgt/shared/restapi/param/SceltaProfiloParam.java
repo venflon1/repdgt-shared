@@ -1,18 +1,21 @@
 package it.pa.repdgt.shared.restapi.param;
 
+import java.io.Serializable;
+
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-import it.pa.repdgt.shared.entityenum.RuoloUtenteEnum;
 import lombok.Getter;
 import lombok.Setter;
 
 @JsonInclude(value = Include.NON_NULL)
 @Getter
 @Setter
-public class SceltaProfiloParam {
+public class SceltaProfiloParam  implements Serializable {
+
+	private static final long serialVersionUID = -5112137216707862594L;
 
 	@NotNull
 	private String codiceRuoloUtenteLoggato;

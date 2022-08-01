@@ -1,6 +1,7 @@
 package it.pa.repdgt.shared;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.Filter;
@@ -35,7 +36,15 @@ public class RequestFilter implements Filter {
 	@Autowired
 	private PermessoApiService permessiApiService;
 	
-	private static final String OPEN_DATA_BASE_URI = "/open-data";
+	private static final List<String> ENDPOINT_NOT_CHECKED = Arrays.asList(
+		"/open-data/download",
+		"/open-data/count/download",
+		"/open-data/presigned/download",
+		"/open-data/carica-file/cittadini",
+		"/contesto",
+		"/contesto/confermaIntegrazione"
+	);
+	private static final CharSequence VERIFICA_PROFILO_BASE_URI = "/contesto/sceltaProfilo";
 	
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -62,35 +71,40 @@ public class RequestFilter implements Filter {
 		String metodoHttp = ((HttpServletRequest) request).getMethod();
 		String endpoint = ((HttpServletRequest) request).getServletPath();
 		
-		if(endpoint.contains(OPEN_DATA_BASE_URI)) {
+		if(ENDPOINT_NOT_CHECKED.contains(endpoint)) {
 			chain.doFilter(wrappedRequest, response);
 		} else {
+			// verifico se l'utente loggato possiede il ruolo con cui si è profilato
 			boolean hasRuoloUtente = this.ruoloService
 					.getRuoliByCodiceFiscaleUtente(wrappedRequest.getCodiceFiscale())
 					.stream()
 					.anyMatch(codiceRuolo -> codiceRuolo.equalsIgnoreCase(codiceRuoloUtenteLoggato));
 		
-			// verifico se l'utente loggato possiede il ruolo con cui si è profilato
 			if(!hasRuoloUtente) {
 				responseHttp.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Utente Non Autorizzato");
 			} else {
-				List<String> codiciPermessoPerApi = this.permessiApiService.getCodiciPermessiApiByMetodoHttpAndPath(metodoHttp, endpoint);
-				List<String> codiciPermessoUtenteLoggato = this.permessoService.getCodiciPermessoByUtenteLoggato(codiceFiscaleUtenteLoggato, codiceRuoloUtenteLoggato);
+				if(endpoint.contains(VERIFICA_PROFILO_BASE_URI)) {
+					chain.doFilter(wrappedRequest, response);
+				} else {
+					List<String> codiciPermessoPerApi = this.permessiApiService.getCodiciPermessiApiByMetodoHttpAndPath(metodoHttp, endpoint);
+					List<String> codiciPermessoUtenteLoggato = this.permessoService.getCodiciPermessoByUtenteLoggato(codiceFiscaleUtenteLoggato, codiceRuoloUtenteLoggato);
 
-				// verifico il profilo dell'utente loggato è abilitato a poter chiamare quella particolare api
-				boolean isUtenteAbilitatoPerApi = false;
-				for(String codiciPermesso: codiciPermessoPerApi) {
-					if(codiciPermessoUtenteLoggato.contains(codiciPermesso)) {
-						isUtenteAbilitatoPerApi = true;
-						break;
+					// verifico il profilo dell'utente loggato è abilitato a poter chiamare quella particolare api
+					boolean isUtenteAbilitatoPerApi = false;
+					for(String codiciPermesso: codiciPermessoPerApi) {
+						if(codiciPermessoUtenteLoggato.contains(codiciPermesso)) {
+							isUtenteAbilitatoPerApi = true;
+							break;
+						}
+					}
+					
+					if(!isUtenteAbilitatoPerApi) {
+						responseHttp.sendError(HttpServletResponse.SC_UNAUTHORIZED, String.format("Utente Non Autorizzato per endpoint: %s %s", metodoHttp, endpoint));
+					}else {
+						chain.doFilter(wrappedRequest, response);
 					}
 				}
 				
-				if(!isUtenteAbilitatoPerApi) {
-					responseHttp.sendError(HttpServletResponse.SC_UNAUTHORIZED, String.format("Utente Non Autorizzato per endpoint: %s %s", metodoHttp, endpoint));
-				}else {
-					chain.doFilter(wrappedRequest, response);
-				}
 			}
 		}
 		

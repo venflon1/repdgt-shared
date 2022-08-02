@@ -34,6 +34,8 @@ public enum CodiceErroreEnum {
 	,U06("Errore ruolo non definito per l'utente")
 	,U07("Errore utente con codice fiscale o numero documento già presente")
 	,U08("Errore codice fiscale o numero documento non specificato")
+	,U09("Errore impossibile aggiungere ruolo all'utente")
+	,U10("Errore impossibile cancellare ruolo all'utente")
 
 	
 	,S01("Errore file upload cittadino non valido")
@@ -43,6 +45,9 @@ public enum CodiceErroreEnum {
 	,S05("Errore creazione servizio. Utente non ha ruolo FACILITATORE")
 	,S06("Errore aggiornare servizio. Utente non ha ruolo FACILITATORE")
 	,S07("Errore impossibile eliminare il servizio.")
+	
+	,SD01("Errore creazione sede")
+	,SD02("Errore aggiornamento sede")
 
 	,Q01("Errore questionario inesistente")
 	,QT01("Errore export csv questionari template")
@@ -59,6 +64,7 @@ public enum CodiceErroreEnum {
 	
 	,EN01("Errore export csv enti")
 	,EN02("Errore file upload enti non valido")
+	,EN03("ErroreImpossibile assegnare ente come gestore del programma")
 	
 	,T01("Errore token non valido")
 	,T02("Errore token scaduto")

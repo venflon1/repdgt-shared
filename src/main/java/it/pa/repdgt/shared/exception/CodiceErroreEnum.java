@@ -64,7 +64,27 @@ public enum CodiceErroreEnum {
 	
 	,EN01("Errore export csv enti")
 	,EN02("Errore file upload enti non valido")
-	,EN03("ErroreImpossibile assegnare ente come gestore del programma")
+	,EN03("Errore Impossibile assegnare ente come gestore del programma")
+	,EN04("Errore Impossibile assegnare referente/delegato ente partner per progetto")
+	,EN05("Errore file upload enti partner non valido")
+	,EN06("Errore Impossibile terminare/cancellare associazione referente")
+	,EN07("Errore Impossibile associare facilitatore/volontario sulla sede-ente-progetto")
+	,EN08("Errore Impossibile cancellare associazione facilitatore/volontario sulla sede-ente-progetto")
+	,EN09("Errore Impossibile terminare/cancellare associazione Ente-Sede-Progetto")
+	,EN10("Errore ente con partita iva già presente")
+	,EN11("Errore Impossibile assegnare referente/delegato ente gestore programma per il programma ")
+	,EN12("Errore Impossibile assegnare referente/delegato ente gestore progetto per il progetto ")
+	,EN13("Errore Impossibile aggiornare ente")
+	,EN14("Errore Impossibile modificare ente gestore programma")
+	,EN15("Errore Impossibile modificare ente gestore progetto")
+	,EN16("Errore Impossibile cancellare ente partner per progetto")
+	,EN17("Errore Impossibile cancellare ente gestore programma per programma")
+	,EN18("Errore Impossibile cancellare ente gestore progetto per progetto")
+	,EN19("Errore Impossibile terminare ente gestore programma per programma")
+	,EN20("Errore Impossibile terminare ente gestore progetto per progetto")
+	,EN21("Errore Impossibile terminare ente partner per progetto")
+	,EN22("Errore Impossibile terminare referente/delegato gestore programma")
+	,EN23("Errore Impossibile terminare referente/delegato gestore progetto")
 	
 	,T01("Errore token non valido")
 	,T02("Errore token scaduto")
@@ -86,6 +106,7 @@ public enum CodiceErroreEnum {
 	,PR06("Errore impossibile assegnare progetto ad al programma")
 	,PR07("Errore attivare progetto")
 	,PR08("Errore export csv progetti")
+	,PR09("Errore Impossibile Assegnare gestore progetto per il progetto. Unico Facilitatore o Volontario attivo sul progetto")
 	;
 	
 	private String descrizioneErrore;

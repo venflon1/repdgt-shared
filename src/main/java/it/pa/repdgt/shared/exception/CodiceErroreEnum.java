@@ -59,6 +59,7 @@ public enum CodiceErroreEnum {
 	
 	,CIT01("Errore upload cittadini")
 	,CIT02("Errore impossibile aggiornare cittadino")
+	,CIT03("Errore export csv cittadini")
 	
 	,E01("Errore invio email")
 	

@@ -13,7 +13,7 @@ public enum CodiceErroreEnum {
 	,C07("Errore integrazione dati utente")
 	
 	,G01("Errore Generico")
-	,G02("Errore Richista errata")
+	,G02("Errore Richiesta errata")
 	,G03("Errore Pagina richista non esistente")
 	
 	,R01("Errore Ruolo già esistente")
@@ -49,16 +49,21 @@ public enum CodiceErroreEnum {
 	,SD01("Errore creazione sede")
 	,SD02("Errore aggiornamento sede")
 
-	,Q01("Errore questionario inesistente")
+	,Q01("Errore questionario template inesistente")
 	,QT01("Errore export csv questionari template")
 	,QT02("Errore impossibile aggiornare il questionario")
 	,QT03("Errore impossibile cancellare il questionario")
+	,QT04("Errore impossibile recuperare il questionario poichè inesistente su MongoDB")
+	,QT05("Errore impossibile recuperare il questionario poichè inesistente su MySql")
+	,QT06("Errore impossibile avere un programma senza associato alcun questionario template")
+	,QT07("Errore impossibile salvare il questionario template perchè id questionario template già esistente")
 	
 	,QC01("Errore questionario compilato non presente su mySql")
 	,QC02("Errore questionario compilato non presente su MongoDB")
 	
 	,CIT01("Errore upload cittadini")
 	,CIT02("Errore impossibile aggiornare cittadino")
+	,CIT03("Errore export csv cittadini")
 	
 	,E01("Errore invio email")
 	

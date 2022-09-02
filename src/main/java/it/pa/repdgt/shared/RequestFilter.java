@@ -3,6 +3,8 @@ package it.pa.repdgt.shared;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -37,12 +39,16 @@ public class RequestFilter implements Filter {
 	private PermessoApiService permessiApiService;
 	
 	private static final List<String> ENDPOINT_NOT_CHECKED = Arrays.asList(
-		"/open-data/download",
-		"/open-data/count/download",
-		"/open-data/presigned/download",
-		"/open-data/carica-file/cittadini",
-		"/contesto",
-		"/contesto/confermaIntegrazione"
+		"^/open-data*",
+		"^/contesto$",
+		"^/contesto/confermaIntegrazione$",
+		"^/utente/upload/immagineProfilo*",
+		"^/utente/download/immagineProfilo*"
+		//da commentare:
+		,"^/swagger-ui*",
+		"^/favicon.ico*",
+		"^/swagger-resources*",
+		"^/v3/api-docs*"
 	);
 	private static final CharSequence VERIFICA_PROFILO_BASE_URI = "/contesto/sceltaProfilo";
 	
@@ -71,7 +77,8 @@ public class RequestFilter implements Filter {
 		String metodoHttp = ((HttpServletRequest) request).getMethod();
 		String endpoint = ((HttpServletRequest) request).getServletPath();
 		
-		if(ENDPOINT_NOT_CHECKED.contains(endpoint)) {
+		//if(ENDPOINT_NOT_CHECKED.contains(endpoint)) {
+		if(isEndpointNotChecked(endpoint)) {
 			chain.doFilter(wrappedRequest, response);
 		} else {
 			// verifico se l'utente loggato possiede il ruolo con cui si è profilato
@@ -113,5 +120,15 @@ public class RequestFilter implements Filter {
 	@Override
 	public void destroy() {
 		log.debug("Filter - destroy");
+	}
+	
+	private boolean isEndpointNotChecked(String endpoint) {
+		for(String endpointNonChecked: ENDPOINT_NOT_CHECKED) {
+			Pattern pattern = Pattern.compile(endpointNonChecked);
+		    Matcher matcher = pattern.matcher(endpoint);
+			if(matcher.find())
+				return true;
+		}
+		return false;
 	}
 }

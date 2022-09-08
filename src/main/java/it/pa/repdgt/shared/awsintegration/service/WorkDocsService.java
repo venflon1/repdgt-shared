@@ -1,5 +1,7 @@
 package it.pa.repdgt.shared.awsintegration.service;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,7 @@ import software.amazon.awssdk.services.workdocs.model.ActivateUserRequest;
 import software.amazon.awssdk.services.workdocs.model.CreateUserRequest;
 import software.amazon.awssdk.services.workdocs.model.CreateUserResponse;
 import software.amazon.awssdk.services.workdocs.model.StorageRuleType;
+import software.amazon.awssdk.services.workdocs.model.StorageType;
 
 @Service
 @Scope("singleton")
@@ -39,13 +42,18 @@ public class WorkDocsService {
 				.region(Region.EU_CENTRAL_1).build();
 	}
 	
+	@PostConstruct
+	private void init() {
+		workdocsInstanceClient = this.getClient();
+	}
+	
 	public CreateUserResponse creaWorkDocsUser(final String username, final String email, final String password) {
 		final StorageRuleType storageRuleType = StorageRuleType.builder()
-																.storageType("")
+																.storageType(StorageType.QUOTA)
 																.build();
 		
 		final CreateUserRequest createUserRequest = CreateUserRequest.builder()
-																.username(null)
+																.username(username)
 																.emailAddress(email)
 																.givenName(username)
 																.storageRule(storageRuleType)

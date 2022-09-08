@@ -39,21 +39,25 @@ public class WorkDocsService {
 				.region(Region.EU_CENTRAL_1).build();
 	}
 	
-	public CreateUserResponse createWorkDocsUser() {
+	public CreateUserResponse creaWorkDocsUser(final String username, final String email, final String password) {
+		final StorageRuleType storageRuleType = StorageRuleType.builder()
+																.storageType("")
+																.build();
+		
 		final CreateUserRequest createUserRequest = CreateUserRequest.builder()
 																.username(null)
-																.emailAddress(null)
-																.givenName(null)
-																.storageRule(StorageRuleType.builder().build())
+																.emailAddress(email)
+																.givenName(username)
+																.storageRule(storageRuleType)
 																.build();
 		
 		 CreateUserResponse createUserResponse = workdocsInstanceClient.createUser(createUserRequest);
 		 return createUserResponse;
 	}
 
-	public ActivateUserRequest activeWorkDocsUser() {
+	public ActivateUserRequest attivaWorkDocsUser(final String username) {
 		final ActivateUserRequest activateUserRequest = ActivateUserRequest.builder()
-																.userId(null)
+																.userId(username)
 																.build();
 		
 		workdocsInstanceClient.activateUser(activateUserRequest);

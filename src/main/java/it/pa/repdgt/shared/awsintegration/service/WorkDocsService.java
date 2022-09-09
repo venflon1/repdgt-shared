@@ -41,7 +41,7 @@ public class WorkDocsService {
 		return WorkDocsClient.builder()
 				.credentialsProvider(
 						StaticCredentialsProvider.create(AwsBasicCredentials.create(this.accessKey, this.secretKey)))
-				.region(Region.EU_CENTRAL_1).build();
+				.region(Region.EU_WEST_1).build();
 	}
 	
 	@PostConstruct
@@ -62,15 +62,16 @@ public class WorkDocsService {
 																.emailAddress(email)
 																.givenName(username)
 																.storageRule(storageRuleType)
+																.surname(username)
 																.build();
 		
 		 CreateUserResponse createUserResponse = workdocsInstanceClient.createUser(createUserRequest);
 		 return createUserResponse;
 	}
 
-	public ActivateUserRequest attivaWorkDocsUser(final String username) {
+	public ActivateUserRequest attivaWorkDocsUser(final String workDocsUserId) {
 		final ActivateUserRequest activateUserRequest = ActivateUserRequest.builder()
-																.userId(username)
+																.userId(workDocsUserId)
 																.build();
 		
 		workdocsInstanceClient.activateUser(activateUserRequest);

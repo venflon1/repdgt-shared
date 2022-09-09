@@ -13,6 +13,7 @@ import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.workdocs.WorkDocsClient;
 import software.amazon.awssdk.services.workdocs.model.ActivateUserRequest;
+import software.amazon.awssdk.services.workdocs.model.ActivateUserResponse;
 import software.amazon.awssdk.services.workdocs.model.CreateUserRequest;
 import software.amazon.awssdk.services.workdocs.model.CreateUserResponse;
 import software.amazon.awssdk.services.workdocs.model.StorageRuleType;
@@ -55,26 +56,40 @@ public class WorkDocsService {
 																.storageAllocatedInBytes(new Long(1048576l))
 																.build();
 		
-		final CreateUserRequest createUserRequest = CreateUserRequest.builder()
-																.organizationId(this.organizationId)
-																.username(username)
-																.password(password)
-																.emailAddress(email)
-																.givenName(username)
-																.storageRule(storageRuleType)
-																.surname(username)
-																.build();
-		
-		 CreateUserResponse createUserResponse = workdocsInstanceClient.createUser(createUserRequest);
+		CreateUserResponse createUserResponse = null;
+		 try {
+			final CreateUserRequest createUserRequest = CreateUserRequest.builder()
+																	.organizationId(this.organizationId)
+																	.username(username)
+																	.password(password)
+																	.emailAddress(email)
+																	.givenName(username)
+																	.storageRule(storageRuleType)
+																	.surname(username)
+																	.build();
+			
+			 log.info("creazione utente workDocs in corso...");
+			 createUserResponse = workdocsInstanceClient.createUser(createUserRequest);
+			 log.info("status createUserWorkDocs ==> {}", createUserResponse.sdkHttpResponse().isSuccessful()? "OK": "KO");
+			 log.info("user_id-workdocs = {}", createUserResponse.user().id());
+		 } catch (Exception e) {
+			throw new RuntimeException("Errore nella creazione utente workDocs");
+		 }
 		 return createUserResponse;
 	}
 
-	public ActivateUserRequest attivaWorkDocsUser(final String workDocsUserId) {
+	public ActivateUserResponse attivaWorkDocsUser(final String workDocsUserId) {
 		final ActivateUserRequest activateUserRequest = ActivateUserRequest.builder()
 																.userId(workDocsUserId)
 																.build();
-		
-		workdocsInstanceClient.activateUser(activateUserRequest);
-		return activateUserRequest;
+		ActivateUserResponse activeteUserResponse = null;
+		try {
+			log.info("Attivazione utente workDocs per utente con idUtenteWorkDocs={} in corso...", workDocsUserId);
+			activeteUserResponse = workdocsInstanceClient.activateUser(activateUserRequest);
+			log.info("status activateUserWorkDocs per utente con idUtenteWorkDocs={} ==> {}", workDocsUserId, activeteUserResponse.sdkHttpResponse().isSuccessful()?"OK": "KO");
+		} catch (Exception e) {
+			throw new RuntimeException("Errore nell'attivazione utente workDocs per utenteIdWorkDocs=" + workDocsUserId);
+		}
+		return activeteUserResponse;
 	}
 }

@@ -29,6 +29,8 @@ public class WorkDocsService {
 	private String accessKey;
 	@Value(value = "${aws.workdocs.secret-key:}")
 	private String secretKey;
+	@Value(value = "${aws.workdocs.organization-id:}")
+	private String organizationId;
 	
 	private static WorkDocsClient workdocsInstanceClient = null;
 	
@@ -50,10 +52,13 @@ public class WorkDocsService {
 	public CreateUserResponse creaWorkDocsUser(final String username, final String email, final String password) {
 		final StorageRuleType storageRuleType = StorageRuleType.builder()
 																.storageType(StorageType.QUOTA)
+																.storageAllocatedInBytes(new Long(1048576l))
 																.build();
 		
 		final CreateUserRequest createUserRequest = CreateUserRequest.builder()
+																.organizationId(this.organizationId)
 																.username(username)
+																.password(password)
 																.emailAddress(email)
 																.givenName(username)
 																.storageRule(storageRuleType)

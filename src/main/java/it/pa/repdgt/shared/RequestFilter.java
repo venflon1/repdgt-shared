@@ -44,12 +44,12 @@ public class RequestFilter implements Filter {
 		"^/contesto/confermaIntegrazione$",
 		"^/utente/upload/immagineProfilo*",
 		"^/utente/download/immagineProfilo*"
-		//da commentare:
-		,"^/swagger-ui*",
-		"^/favicon.ico*",
-		"^/swagger-resources*",
-		"^/v3/api-docs*",
-		"^/v2/api-docs*"
+//		da decommentare in locale(aggiunta endpoint per lanciare swagger):
+//		,"^/swagger-ui*",
+//		"^/favicon.ico*",
+//		"^/swagger-resources*",
+//		"^/v3/api-docs*",
+//		"^/v2/api-docs*"
 	);
 	private static final CharSequence VERIFICA_PROFILO_BASE_URI = "/contesto/sceltaProfilo";
 	
@@ -78,7 +78,6 @@ public class RequestFilter implements Filter {
 		String metodoHttp = ((HttpServletRequest) request).getMethod();
 		String endpoint = ((HttpServletRequest) request).getServletPath();
 		
-		//if(ENDPOINT_NOT_CHECKED.contains(endpoint)) {
 		if(isEndpointNotChecked(endpoint)) {
 			chain.doFilter(wrappedRequest, response);
 		} else {

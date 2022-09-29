@@ -16,6 +16,8 @@ import software.amazon.awssdk.services.workdocs.model.ActivateUserRequest;
 import software.amazon.awssdk.services.workdocs.model.ActivateUserResponse;
 import software.amazon.awssdk.services.workdocs.model.CreateUserRequest;
 import software.amazon.awssdk.services.workdocs.model.CreateUserResponse;
+import software.amazon.awssdk.services.workdocs.model.DeactivateUserRequest;
+import software.amazon.awssdk.services.workdocs.model.DeactivateUserResponse;
 import software.amazon.awssdk.services.workdocs.model.StorageRuleType;
 import software.amazon.awssdk.services.workdocs.model.StorageType;
 
@@ -91,5 +93,20 @@ public class WorkDocsService {
 			throw new RuntimeException("Errore nell'attivazione utente workDocs per utenteIdWorkDocs=" + workDocsUserId);
 		}
 		return activeteUserResponse;
+	}
+	
+	public DeactivateUserResponse disattivaWorkDocsUser(final String workDocsUserId) {
+		final DeactivateUserRequest deactivateUserRequest = DeactivateUserRequest.builder()
+																.userId(workDocsUserId)
+																.build();
+		DeactivateUserResponse deactiveteUserResponse = null;
+		try {
+			log.info("Disattivazione utente workDocs per utente con idUtenteWorkDocs={} in corso...", workDocsUserId);
+			deactiveteUserResponse = workdocsInstanceClient.deactivateUser(deactivateUserRequest);
+			log.info("status deactivateUserWorkDocs per utente con idUtenteWorkDocs={} ==> {}", workDocsUserId, deactiveteUserResponse.sdkHttpResponse().isSuccessful()?"OK": "KO");
+		} catch (Exception e) {
+			throw new RuntimeException("Errore nella disattivazione utente workDocs per utenteIdWorkDocs=" + workDocsUserId);
+		}
+		return deactiveteUserResponse;
 	}
 }

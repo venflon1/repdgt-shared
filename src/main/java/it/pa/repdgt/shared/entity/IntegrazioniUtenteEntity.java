@@ -39,6 +39,15 @@ public class IntegrazioniUtenteEntity implements Serializable {
 	@Column(name = "UTENTE_REGISTRATO_WORKDOCS", nullable = false)
 	private Boolean utenteRegistratoInWorkdocs;
 	
+	@Column(name = "ID_UTENTE_WORKDOCS")
+	private String idUtenteWorkdocs;
+	
+	@Column(name = "UTENTE_REGISTRATO_ROCKETCHAT", nullable = false)
+	private Boolean utenteRegistratoInRocketChat;
+	
+	@Column(name = "ID_UTENTE_ROCKETCHAT")
+	private String idUtenteRocketChat;
+	
 	@Temporal(value = TemporalType.TIMESTAMP)
 	@Column(name = "DATA_ORA_CREAZIONE")
 	private Date dataOraCreazione;

@@ -90,7 +90,7 @@ public class WorkDocsService {
 			activeteUserResponse = workdocsInstanceClient.activateUser(activateUserRequest);
 			log.info("status activateUserWorkDocs per utente con idUtenteWorkDocs={} ==> {}", workDocsUserId, activeteUserResponse.sdkHttpResponse().isSuccessful()?"OK": "KO");
 		} catch (Exception e) {
-			throw new RuntimeException("Errore nell'attivazione utente workDocs per utenteIdWorkDocs=" + workDocsUserId);
+			throw new RuntimeException("Errore nell'attivazione utente workDocs per utenteIdWorkDocs=" + workDocsUserId, e);
 		}
 		return activeteUserResponse;
 	}
@@ -105,7 +105,7 @@ public class WorkDocsService {
 			deactiveteUserResponse = workdocsInstanceClient.deactivateUser(deactivateUserRequest);
 			log.info("status deactivateUserWorkDocs per utente con idUtenteWorkDocs={} ==> {}", workDocsUserId, deactiveteUserResponse.sdkHttpResponse().isSuccessful()?"OK": "KO");
 		} catch (Exception e) {
-			throw new RuntimeException("Errore nella disattivazione utente workDocs per utenteIdWorkDocs=" + workDocsUserId);
+			throw new RuntimeException("Errore nella disattivazione utente workDocs per utenteIdWorkDocs=" + workDocsUserId, e);
 		}
 		return deactiveteUserResponse;
 	}

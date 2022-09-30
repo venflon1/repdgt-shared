@@ -26,8 +26,6 @@ import software.amazon.awssdk.services.workdocs.model.StorageType;
 @Validated
 @Slf4j
 public class WorkDocsService {
-	@Value(value = "${aws.workdocs.app-id:}")
-	private String appId;
 	@Value(value = "${aws.workdocs.access-key:}")
 	private String accessKey;
 	@Value(value = "${aws.workdocs.secret-key:}")

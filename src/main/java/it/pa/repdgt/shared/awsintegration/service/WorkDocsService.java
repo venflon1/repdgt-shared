@@ -26,11 +26,11 @@ import software.amazon.awssdk.services.workdocs.model.StorageType;
 @Validated
 @Slf4j
 public class WorkDocsService {
-	@Value(value = "${aws.workdocs.access-key:}")
+	@Value(value = "${aws.workdocs.access-key:access-key}")
 	private String accessKey;
-	@Value(value = "${aws.workdocs.secret-key:}")
+	@Value(value = "${aws.workdocs.secret-key:secret-key}")
 	private String secretKey;
-	@Value(value = "${aws.workdocs.organization-id:}")
+	@Value(value = "${aws.workdocs.organization-id:org-id}")
 	private String organizationId;
 	
 	private static WorkDocsClient workdocsInstanceClient = null;

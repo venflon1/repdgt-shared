@@ -146,6 +146,8 @@ public enum CodiceErroreEnum {
 	,RC01("Errore tecnico creazione utente RocketChat")
 	,RC02("Errore creazione utente RocketChat")
 	,RC03("Errore recupero token utente RocketChat")
+	
+	,AC01("Errore tentavo accesso a risorsa non permesso")
 	;
 	
 	private String descrizioneErrore;

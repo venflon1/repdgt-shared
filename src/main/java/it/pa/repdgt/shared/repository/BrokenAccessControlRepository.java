@@ -138,5 +138,38 @@ public interface BrokenAccessControlRepository extends JpaRepository<RuoloEntity
 			+ "and id_progetto = :idProgetto "
 			+ "and id_ente = :idEnte", 
 			nativeQuery = true)
-	public int getCountSedeByIdProgettoAndEnte(Long idSede, Long idProgetto, Long idEnte); 
+	public int getCountSedeByIdProgettoAndEnte(Long idSede, Long idProgetto, Long idEnte);
+
+	/**** FILTER *****/
+	@Query(value = "SELECT count(*) FROM referente_delegati_gestore_programma "
+			+ "where id_programma = :idProgramma "
+			+ "and id_ente = :idEnte "
+			+ "and cf_utente = :codiceFiscale "
+			+ "and codice_ruolo = :codiceRuolo ", 
+			nativeQuery = true)
+	public int isRefDegProgramma(String codiceFiscale, String codiceRuolo, String idProgramma, String idEnte);
+
+	@Query(value = "SELECT count(*) FROM referente_delegati_gestore_progetto "
+			+ "where id_progetto = :idProgetto "
+			+ "and id_ente = :idEnte "
+			+ "and cf_utente = :codiceFiscale "
+			+ "and codice_ruolo = :codiceRuolo ", 
+			nativeQuery = true)
+	public int isRefDegProgetto(String codiceFiscale, String codiceRuolo, String idProgetto, String idEnte);
+
+	@Query(value = "SELECT count(*) FROM referente_delegati_partner "
+			+ "where id_progetto = :idProgetto "
+			+ "and id_ente = :idEnte "
+			+ "and cf_utente = :codiceFiscale "
+			+ "and codice_ruolo = :codiceRuolo ", 
+			nativeQuery = true)
+	public int isRefDegPartner(String codiceFiscale, String codiceRuolo, String idProgetto, String idEnte);
+
+	@Query(value = "SELECT count(*) FROM ente_sede_progetto_facilitatore "
+			+ "where id_progetto = :idProgetto "
+			+ "and id_ente = :idEnte "
+			+ "and id_facilitatore = :codiceFiscale "
+			+ "and ruolo_utente = :codiceRuolo ", 
+			nativeQuery = true)
+	public int isFacVolProgettoAndEnte(String codiceFiscale, String codiceRuolo, String idProgetto, String idEnte); 
 }

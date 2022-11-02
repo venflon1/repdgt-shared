@@ -3,7 +3,6 @@ package it.pa.repdgt.shared;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -19,8 +18,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-import it.pa.repdgt.shared.exception.BaseException;
-import it.pa.repdgt.shared.exception.CodiceErroreEnum;
 import it.pa.repdgt.shared.service.PermessoApiService;
 import it.pa.repdgt.shared.service.PermessoService;
 import it.pa.repdgt.shared.service.RuoloService;
@@ -91,9 +88,12 @@ public class RequestFilter implements Filter {
 				if(!hasRuoloUtente) {
 					responseHttp.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Utente Non Autorizzato");
 				} else { 
-					if(bodyRequest != null && !"".equals(bodyRequest.trim())
+					if(bodyRequest != null 
+							&& !"".equals(bodyRequest.trim())
 							&& !filterUtil.verificaSceltaProfilo(codiceFiscaleUtenteLoggato, codiceRuoloUtenteLoggato, bodyRequest )
-							&& !endpoint.contains("/drupal/forward") ) {
+							&& !endpoint.contains("/drupal/forward")
+							&& !endpoint.contains("/rocket-chat/")
+							&& !endpoint.contains("/integrazione/workdocs") ) {
 						responseHttp.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Utente Non Autorizzato");
 					}else {
 						if(endpoint.contains(FilterUtil.VERIFICA_PROFILO_BASE_URI) || endpoint.contains("/drupal/forward") || endpoint.contains("/utente/listaUtenti")) {

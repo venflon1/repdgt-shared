@@ -72,6 +72,9 @@ public class RequestFilter implements Filter {
 			else
 				responseHttp.sendError(HttpServletResponse.SC_UNAUTHORIZED, String.format("Utente Non Autorizzato per endpoint: %s %s", metodoHttp, endpoint));
 		}else {
+			/*
+			 * chiamate ad API che non hanno bisogno del controllo dei permessi
+			 */
 			if(FilterUtil.isEndpointNotChecked(endpoint) 
 					/* per risolvere il problema di mysql "Error Code: 3699. Timeout exceeded in regular expression match."
 					 * per gli endpoint /servizio/cittadino/questionarioCompilato/.../anonimo che non hanno CF per login
@@ -87,7 +90,11 @@ public class RequestFilter implements Filter {
 
 				if(!hasRuoloUtente) {
 					responseHttp.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Utente Non Autorizzato");
-				} else { 
+				} else {
+					/*
+					 * controllo per vedere se idProgramma/idProgetto/idEnte sono coerenti con utente e ruolo che chiama API
+					 * api drupal/rocketchat/workdocs sono esenti da tale controllo
+					 */
 					if(bodyRequest != null 
 							&& !"".equals(bodyRequest.trim())
 							&& !filterUtil.verificaSceltaProfilo(codiceFiscaleUtenteLoggato, codiceRuoloUtenteLoggato, bodyRequest )
@@ -96,9 +103,15 @@ public class RequestFilter implements Filter {
 							&& !endpoint.contains("/integrazione/workdocs") ) {
 						responseHttp.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Utente Non Autorizzato");
 					}else {
+						/*
+						 * le seguenti api non hanno bisogno del controllo dei codici permesso
+						 */
 						if(endpoint.contains(FilterUtil.VERIFICA_PROFILO_BASE_URI) || endpoint.contains("/drupal/forward") || endpoint.contains("/utente/listaUtenti")) {
 							chain.doFilter(wrappedRequest, response);
 						} else {
+							/*
+							 * verifica se il profilo dell'utente loggato è abilitato (codici permesso) a poter chiamare quella particolare api
+							 */
 							List<String> codiciPermessoPerApi;
 							if(FilterUtil.isEndpointQuestionarioCompilato(endpoint)) {
 								/* per risolvere il problema di mysql "Error Code: 3699. Timeout exceeded in regular expression match."
@@ -110,9 +123,6 @@ public class RequestFilter implements Filter {
 							}
 							List<String> codiciPermessoUtenteLoggato = this.permessoService.getCodiciPermessoByUtenteLoggato(codiceFiscaleUtenteLoggato, codiceRuoloUtenteLoggato);
 
-
-
-							// verifico il profilo dell'utente loggato è abilitato a poter chiamare quella particolare api
 							boolean isUtenteAbilitatoPerApi = false;
 							for(String codiciPermesso: codiciPermessoPerApi) {
 								if(codiciPermessoUtenteLoggato.contains(codiciPermesso)) {

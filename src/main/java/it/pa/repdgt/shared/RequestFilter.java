@@ -108,7 +108,7 @@ public class RequestFilter implements Filter {
 						/*
 						 * le seguenti api non hanno bisogno del controllo dei codici permesso
 						 */
-						if(endpoint.contains("/ente/light/") || endpoint.contains(FilterUtil.VERIFICA_PROFILO_BASE_URI) || endpoint.contains("/drupal/forward") || endpoint.contains("/utente/listaUtenti")) {
+						if(endpoint.contains(FilterUtil.VERIFICA_PROFILO_BASE_URI) || endpoint.contains("/drupal/forward") || endpoint.contains("/utente/listaUtenti")) {
 							chain.doFilter(wrappedRequest, response);
 						} else {
 							/*

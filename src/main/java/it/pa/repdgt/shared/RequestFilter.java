@@ -101,13 +101,14 @@ public class RequestFilter implements Filter {
 							&& !filterUtil.verificaSceltaProfilo(codiceFiscaleUtenteLoggato, codiceRuoloUtenteLoggato, bodyRequest )
 							&& !endpoint.contains("/rocket-chat/")
 							&& !endpoint.contains("/integrazione/workdocs")
+							&& !endpoint.contains("/all/orderBy")
 							) {
 						responseHttp.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Utente Non Autorizzato");
 					}else {
 						/*
 						 * le seguenti api non hanno bisogno del controllo dei codici permesso
 						 */
-						if(endpoint.contains(FilterUtil.VERIFICA_PROFILO_BASE_URI) || endpoint.contains("/drupal/forward") || endpoint.contains("/utente/listaUtenti")) {
+						if(endpoint.contains(FilterUtil.VERIFICA_PROFILO_BASE_URI) || endpoint.contains("/drupal/forward") || endpoint.contains("/utente/listaUtenti") || endpoint.contains("/all/orderBy")) {
 							chain.doFilter(wrappedRequest, response);
 						} else {
 							/*
